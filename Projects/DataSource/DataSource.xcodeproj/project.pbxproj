@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6165C7F1AFDF845C88BE3F4A /* Shared.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 3CBCB96722F90914CB2EC15B /* Shared.framework */; };
-		9FFFA0203A69232C2C0BDA2F /* Domain.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 057C674D3AD26CB7C4C508C1 /* Domain.framework */; };
+		04248AC07EF7C561629220D4 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBCB96722F90914CB2EC15B /* Shared.framework */; };
+		95EB7046E1E61A9470A99CDA /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057C674D3AD26CB7C4C508C1 /* Domain.framework */; };
 		B96817B0BF039487DF13859B /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA507960687D9F460252EF99 /* DataSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,17 +22,6 @@
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC9B651D13E49D54F4C6A8C9 /* Dependencies */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstSubfolderSpec = 16;
-			files = (
-				9FFFA0203A69232C2C0BDA2F /* Domain.framework in Dependencies */,
-				6165C7F1AFDF845C88BE3F4A /* Shared.framework in Dependencies */,
-			);
-			name = Dependencies;
-			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -49,6 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95EB7046E1E61A9470A99CDA /* Domain.framework in Frameworks */,
+				04248AC07EF7C561629220D4 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +108,6 @@
 				060D19A2C367AF511A4D0108 /* Resources */,
 				C1E8A3EACD51178306C59A47 /* Frameworks */,
 				CE65733DC9674134773AD92C /* Embed Frameworks */,
-				DC9B651D13E49D54F4C6A8C9 /* Dependencies */,
 			);
 			buildRules = (
 			);

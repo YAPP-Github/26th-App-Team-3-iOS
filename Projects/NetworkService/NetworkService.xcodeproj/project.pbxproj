@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B7711A50A769C1EC9C89C0C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C41C8487722085FEE05DE5 /* NetworkService.swift */; };
-		222B550DF947D085FAA041DF /* Shared.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 5870AA60285FBE66073DD953 /* Shared.framework */; };
 		A2C9E5DADF68F81C3CEF2A1D /* DataSource.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = EA0240C54A9D5A70C45CE5CA /* DataSource.framework */; };
+		DEB5FF9533E7291594ADCC64 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5870AA60285FBE66073DD953 /* Shared.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +19,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				A2C9E5DADF68F81C3CEF2A1D /* DataSource.framework in Dependencies */,
-				222B550DF947D085FAA041DF /* Shared.framework in Dependencies */,
 			);
 			name = Dependencies;
 			runOnlyForDeploymentPostprocessing = 1;
@@ -49,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB5FF9533E7291594ADCC64 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

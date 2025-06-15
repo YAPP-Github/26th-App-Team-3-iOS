@@ -6,7 +6,7 @@ let project = Project(
         .target(
             name: "Domain",
             destinations: .iOS,
-            product: .staticFramework,
+            product: .framework,
             bundleId: "com.bitnagil.domain",
             deploymentTargets: .iOS("15.0"),
             infoPlist: .default,

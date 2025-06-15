@@ -6,12 +6,12 @@ import Foundation
 // MARK: - Swift Bundle Accessor for Frameworks
 private class BundleFinder {}
 extension Foundation.Bundle {
-/// Since Bitnagil is a application, the bundle for classes within this module can be used directly.
+/// Since App is a application, the bundle for classes within this module can be used directly.
 static let module = Bundle(for: BundleFinder.self)
 }
 // MARK: - Objective-C Bundle Accessor
 @objc
-public class BitnagilResources: NSObject {
+public class AppResources: NSObject {
 @objc public class var bundle: Bundle {
     return .module
 }

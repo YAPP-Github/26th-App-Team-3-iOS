@@ -3,16 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		004FD1E183A2F52A4913C9DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210F22777D23AD1713BCADE /* AppDelegate.swift */; };
+		0F3EBD548A92D7401B1FC633 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057A3CD8D734F9C1B4948C18 /* LaunchScreen.storyboard */; };
+		13E38F429DD38A875929954E /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB40F3B3D8E2DCB2AC3C9605 /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BC5B98AD386E5E8F84A45D6 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB40F3B3D8E2DCB2AC3C9605 /* Shared.framework */; };
 		1CC5497D4325800197E0D4AD /* Presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 537ED5DBF00B5D2B5A03A60B /* Presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E743A6F76CCB6064D781210 /* TuistAssets+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D529DAAF6A9D59C44D9D68 /* TuistAssets+App.swift */; };
 		4787DFDD71F731243F3587AF /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEB75E9463ACE494A73BD36 /* Domain.framework */; };
+		48469C5111BF762561C9B9B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F83A194E1D17030DCA033 /* Assets.xcassets */; };
+		791E438F57DB6775DD4A8170 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEB75E9463ACE494A73BD36 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8CFD2702DFF139E00BB2CC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CFD26F2DFF139A00BB2CC0 /* SceneDelegate.swift */; };
 		E678B6575F4098186CCAA823 /* DataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FBCA54F0C56C37162AF664 /* DataSource.framework */; };
 		F8791705E402BF780055F988 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537ED5DBF00B5D2B5A03A60B /* Presentation.framework */; };
+		FE078F42728C23B77EE02A1B /* TuistBundle+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083CD4D343ECF7F321C1905D /* TuistBundle+App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,7 +29,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				791E438F57DB6775DD4A8170 /* Domain.framework in Embed Frameworks */,
 				1CC5497D4325800197E0D4AD /* Presentation.framework in Embed Frameworks */,
+				13E38F429DD38A875929954E /* Shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -30,13 +39,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01E1AA015F9EE84780DE15E5 /* App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "App-Info.plist"; sourceTree = "<group>"; };
+		057A3CD8D734F9C1B4948C18 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		083CD4D343ECF7F321C1905D /* TuistBundle+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+App.swift"; sourceTree = "<group>"; };
 		42FBCA54F0C56C37162AF664 /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		537ED5DBF00B5D2B5A03A60B /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		571E08A9083FD4334E4B7D06 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BEB75E9463ACE494A73BD36 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7210F22777D23AD1713BCADE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F7F83A194E1D17030DCA033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		95D529DAAF6A9D59C44D9D68 /* TuistAssets+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+App.swift"; sourceTree = "<group>"; };
+		A8CFD26F2DFF139A00BB2CC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AB40F3B3D8E2DCB2AC3C9605 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F13E636A9305A42EC91FE66D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,23 +80,36 @@
 			isa = PBXGroup;
 			children = (
 				B3BCDE38B26B330C9A04FADE /* Derived */,
+				62EFB15EC88C1D2636544B42 /* Resources */,
 				858C4E433DBF0294DFED1B0C /* Sources */,
 			);
 			name = Project;
 			sourceTree = "<group>";
 		};
-		66EB57D721CBB7D427955C21 /* InfoPlists */ = {
+		62EFB15EC88C1D2636544B42 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				01E1AA015F9EE84780DE15E5 /* App-Info.plist */,
+				8F7F83A194E1D17030DCA033 /* Assets.xcassets */,
+				F13E636A9305A42EC91FE66D /* Info.plist */,
+				057A3CD8D734F9C1B4948C18 /* LaunchScreen.storyboard */,
 			);
-			path = InfoPlists;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		858C4E433DBF0294DFED1B0C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A8CFD26F2DFF139A00BB2CC0 /* SceneDelegate.swift */,
 				7210F22777D23AD1713BCADE /* AppDelegate.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8919B428B639C6AF4BBFE002 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				95D529DAAF6A9D59C44D9D68 /* TuistAssets+App.swift */,
+				083CD4D343ECF7F321C1905D /* TuistBundle+App.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -90,7 +117,7 @@
 		B3BCDE38B26B330C9A04FADE /* Derived */ = {
 			isa = PBXGroup;
 			children = (
-				66EB57D721CBB7D427955C21 /* InfoPlists */,
+				8919B428B639C6AF4BBFE002 /* Sources */,
 			);
 			path = Derived;
 			sourceTree = "<group>";
@@ -161,6 +188,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48469C5111BF762561C9B9B6 /* Assets.xcassets in Resources */,
+				0F3EBD548A92D7401B1FC633 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E743A6F76CCB6064D781210 /* TuistAssets+App.swift in Sources */,
+				FE078F42728C23B77EE02A1B /* TuistBundle+App.swift in Sources */,
 				004FD1E183A2F52A4913C9DB /* AppDelegate.swift in Sources */,
+				A8CFD2702DFF139E00BB2CC0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +216,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Derived/InfoPlists/App-Info.plist";
+				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -193,13 +225,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.app;
 				PRODUCT_NAME = App;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -266,7 +296,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Derived/InfoPlists/App-Info.plist";
+				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -275,8 +305,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.app;
 				PRODUCT_NAME = App;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

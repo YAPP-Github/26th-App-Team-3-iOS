@@ -8,20 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		032E4B53C9EDED3BCB584019 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F491B7F514684708DC6E0D4 /* Domain.swift */; };
-		82F28B3226CA491D5B9C9DCF /* Shared.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 88290FF5D0840A64CDD73D68 /* Shared.framework */; };
+		8952BE4BECBFDB70C6F5C838 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88290FF5D0840A64CDD73D68 /* Shared.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1779A4FE8AA46343CD51F8EF /* Dependencies */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstSubfolderSpec = 16;
-			files = (
-				82F28B3226CA491D5B9C9DCF /* Shared.framework in Dependencies */,
-			);
-			name = Dependencies;
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		DBA686A82FFC1AB19CC1C76B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8952BE4BECBFDB70C6F5C838 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +104,6 @@
 				2A71FE6FD8EF88EBB2284866 /* Resources */,
 				2069052369677C3E97D5C897 /* Frameworks */,
 				DBA686A82FFC1AB19CC1C76B /* Embed Frameworks */,
-				1779A4FE8AA46343CD51F8EF /* Dependencies */,
 			);
 			buildRules = (
 			);
@@ -244,7 +234,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.domain;
 				PRODUCT_NAME = Domain;
 				SDKROOT = iphoneos;
@@ -337,7 +326,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.domain;
 				PRODUCT_NAME = Domain;
 				SDKROOT = iphoneos;

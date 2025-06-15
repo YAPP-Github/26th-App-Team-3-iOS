@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6324B0CB93E4D411FF1B9194 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F75D98CC5703A575F6C31F /* Persistence.swift */; };
+		A6B9B914939EA20B9226D0A2 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFFD212B86F1EBB0C03D906 /* Shared.framework */; };
 		E26DBF443DE2C29E5ACC1169 /* DataSource.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 5C949FFC1403EADC87574CE7 /* DataSource.framework */; };
-		F20B3C9F910FC4853F3BE7F3 /* Shared.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 9CFFD212B86F1EBB0C03D906 /* Shared.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +19,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				E26DBF443DE2C29E5ACC1169 /* DataSource.framework in Dependencies */,
-				F20B3C9F910FC4853F3BE7F3 /* Shared.framework in Dependencies */,
 			);
 			name = Dependencies;
 			runOnlyForDeploymentPostprocessing = 1;
@@ -49,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B9B914939EA20B9226D0A2 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
