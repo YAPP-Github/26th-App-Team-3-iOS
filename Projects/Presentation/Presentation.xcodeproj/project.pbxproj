@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550A378C83436838E543D472 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB9EB9C6C13C8F825E27E73 /* SnapKit.framework */; };
 		5CBA016B8955B64B9AE82FD6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C203FDAFBDDEFC6A57F6B398 /* HomeViewController.swift */; };
 		6E76AF41B3FEEF4652A7CEED /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED236801C3C6EBF9BB755A4 /* Shared.framework */; };
 		9A38F45616541E23B2BD7536 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F0720D9B464CF8F3E51AD1 /* Domain.framework */; };
+		BFA4C8CE19B7D93A66DAFDAC /* Then.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECB22016E4C3FE7CA99BE6C /* Then.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +31,9 @@
 		134AEE009D928C7E39EAF4CD /* Presentation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Presentation-Info.plist"; sourceTree = "<group>"; };
 		342AE4EAEE40294F0A26F2B8 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F0720D9B464CF8F3E51AD1 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ECB22016E4C3FE7CA99BE6C /* Then.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Then.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C203FDAFBDDEFC6A57F6B398 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CEB9EB9C6C13C8F825E27E73 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED236801C3C6EBF9BB755A4 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -40,6 +44,8 @@
 			files = (
 				9A38F45616541E23B2BD7536 /* Domain.framework in Frameworks */,
 				6E76AF41B3FEEF4652A7CEED /* Shared.framework in Frameworks */,
+				550A378C83436838E543D472 /* SnapKit.framework in Frameworks */,
+				BFA4C8CE19B7D93A66DAFDAC /* Then.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +91,8 @@
 				82F0720D9B464CF8F3E51AD1 /* Domain.framework */,
 				342AE4EAEE40294F0A26F2B8 /* Presentation.framework */,
 				DED236801C3C6EBF9BB755A4 /* Shared.framework */,
+				CEB9EB9C6C13C8F825E27E73 /* SnapKit.framework */,
+				8ECB22016E4C3FE7CA99BE6C /* Then.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";

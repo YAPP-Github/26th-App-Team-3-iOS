@@ -26,4 +26,14 @@
          location = "group:Shared/Shared.xcodeproj">
       </FileRef>
    </Group>
+   <Group
+      location = "container:"
+      name = "Dependencies">
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Then/Then.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>
