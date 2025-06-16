@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CBA016B8955B64B9AE82FD6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C203FDAFBDDEFC6A57F6B398 /* HomeViewController.swift */; };
 		6E76AF41B3FEEF4652A7CEED /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED236801C3C6EBF9BB755A4 /* Shared.framework */; };
 		9A38F45616541E23B2BD7536 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F0720D9B464CF8F3E51AD1 /* Domain.framework */; };
-		A8CFD2742DFF145400BB2CC0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CFD2732DFF145400BB2CC0 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +29,7 @@
 		134AEE009D928C7E39EAF4CD /* Presentation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Presentation-Info.plist"; sourceTree = "<group>"; };
 		342AE4EAEE40294F0A26F2B8 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F0720D9B464CF8F3E51AD1 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8CFD2732DFF145400BB2CC0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C203FDAFBDDEFC6A57F6B398 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DED236801C3C6EBF9BB755A4 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,7 +65,7 @@
 		ACFC6E8F6D299B22A1D9900B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A8CFD2732DFF145400BB2CC0 /* HomeViewController.swift */,
+				C203FDAFBDDEFC6A57F6B398 /* HomeViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -127,11 +127,6 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				TargetAttributes = {
-					3F31459B2DA9E5BB7B7E73E2 = {
-						LastSwiftMigration = 1620;
-					};
-				};
 			};
 			buildConfigurationList = 1F46484E0096B2E0258B70F5 /* Build configuration list for PBXProject "Presentation" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -166,7 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8CFD2742DFF145400BB2CC0 /* HomeViewController.swift in Sources */,
+				5CBA016B8955B64B9AE82FD6 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +171,6 @@
 		28D22904AFA6A96E5C3BFA05 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -322,7 +316,6 @@
 		8E7C6583191531D91411CB09 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -344,7 +337,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
