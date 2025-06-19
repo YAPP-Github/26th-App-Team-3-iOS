@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A826F68B2E03DEA100104CE7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826F68A2E03DEA100104CE7 /* Logger.swift */; };
+		181CA5E1959AB4187C632868 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA3CE7364D847CFFC2F780 /* DIContainer.swift */; };
+		B92754C32E68D3D7289D162A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96657923FBDBC745B117A4E /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +26,8 @@
 
 /* Begin PBXFileReference section */
 		080C58231FCEDC083F899294 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A826F68A2E03DEA100104CE7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		50DA3CE7364D847CFFC2F780 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		A96657923FBDBC745B117A4E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D72BA6AE8B9AF02B56D8FC04 /* Shared-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shared-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,7 +70,8 @@
 		8DBC6BAA6C2105D09B097177 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A826F68A2E03DEA100104CE7 /* Logger.swift */,
+				50DA3CE7364D847CFFC2F780 /* DIContainer.swift */,
+				A96657923FBDBC745B117A4E /* Logger.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -153,7 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A826F68B2E03DEA100104CE7 /* Logger.swift in Sources */,
+				181CA5E1959AB4187C632868 /* DIContainer.swift in Sources */,
+				B92754C32E68D3D7289D162A /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +221,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
