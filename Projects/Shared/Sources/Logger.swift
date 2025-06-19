@@ -10,7 +10,14 @@ import OSLog
 public enum BitnagilLogger {
     private static let logger = Logger()
 
-    public static func log(logType: OSLogType, message: String) {
-        logger.log(level: logType, "\(message)")
+    public static func log(
+        logType: OSLogType,
+        message: String,
+        file: String = #file,
+        function: String = #function,
+        line: Int = #line
+    ) {
+        let fileName = (file as NSString).lastPathComponent
+        logger.log(level: logType, "[\(fileName):\(line)] \(function): \(message)")
     }
 }
