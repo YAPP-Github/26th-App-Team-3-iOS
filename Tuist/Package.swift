@@ -5,6 +5,6 @@ let package = Package(
   name: "Bitnagil",
   dependencies: [
     .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.0.0"),
-    .package(url: "https://github.com/devxoul/Then.git", from: "3.0.0") // 마지막 쉼표 제거
+    .package(url: "https://github.com/devxoul/Then.git", from: "3.0.0") 
   ]
 )
