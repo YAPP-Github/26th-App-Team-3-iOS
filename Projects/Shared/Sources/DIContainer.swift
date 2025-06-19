@@ -19,7 +19,7 @@ public final class DIContainer {
 
     public func resolve<T>(type: T.Type) -> T? {
         guard let instance = storage["\(type)"] as? T else {
-            // TODO: Logger 찍기
+            BitnagilLogger.log(logType: .error, message: "\(type) Resolve Fail: 등록되지 않은 의존성입니다.")
             return nil
         }
         return instance
