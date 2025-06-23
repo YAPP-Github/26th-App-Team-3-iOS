@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		032E4B53C9EDED3BCB584019 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F491B7F514684708DC6E0D4 /* Domain.swift */; };
+		05ADDD52889097D1DAE01D99 /* TokenStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC894FA714FE036CF1E3FB4 /* TokenStoreProtocol.swift */; };
+		05B7EA9B5204820DFA0B71C0 /* RoutineProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86890AD3EE19FA54F4173C8C /* RoutineProgress.swift */; };
+		628148224D6EF54622164A46 /* RoutineProgressStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697F769B52CB35264CD8970 /* RoutineProgressStoreProtocol.swift */; };
+		87548587B1588E2811C8B970 /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD847E19927DC4E502CE710E /* KeychainStorageProtocol.swift */; };
 		8952BE4BECBFDB70C6F5C838 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88290FF5D0840A64CDD73D68 /* Shared.framework */; };
+		B66EC54F812CE5C34950A79D /* OnboardingDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D5400C0CEDCBA7227B932 /* OnboardingDataStoreProtocol.swift */; };
+		DBB3256A7944F04F7199B53A /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317CD2662840FE470830B33 /* OnboardingData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +30,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5317CD2662840FE470830B33 /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
+		86890AD3EE19FA54F4173C8C /* RoutineProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgress.swift; sourceTree = "<group>"; };
 		88290FF5D0840A64CDD73D68 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F491B7F514684708DC6E0D4 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
+		9697F769B52CB35264CD8970 /* RoutineProgressStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgressStoreProtocol.swift; sourceTree = "<group>"; };
+		ACC894FA714FE036CF1E3FB4 /* TokenStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStoreProtocol.swift; sourceTree = "<group>"; };
+		AD847E19927DC4E502CE710E /* KeychainStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorageProtocol.swift; sourceTree = "<group>"; };
 		BD15A37E85BAE3A36B2CE72C /* Domain-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Domain-Info.plist"; sourceTree = "<group>"; };
+		BF2D5400C0CEDCBA7227B932 /* OnboardingDataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataStoreProtocol.swift; sourceTree = "<group>"; };
 		FD49F277B86481D3D105FAC8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -51,6 +61,15 @@
 			path = Derived;
 			sourceTree = "<group>";
 		};
+		11B3611D1728B87E7C917C63 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				5317CD2662840FE470830B33 /* OnboardingData.swift */,
+				86890AD3EE19FA54F4173C8C /* RoutineProgress.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		23FB790DBB2E2B4343512188 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,7 +82,8 @@
 		28B694539E22431DAF52B883 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9F491B7F514684708DC6E0D4 /* Domain.swift */,
+				11B3611D1728B87E7C917C63 /* Entity */,
+				C9F50C9EBF78ADE3C345A753 /* Protocol */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -91,6 +111,17 @@
 				BD15A37E85BAE3A36B2CE72C /* Domain-Info.plist */,
 			);
 			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		C9F50C9EBF78ADE3C345A753 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AD847E19927DC4E502CE710E /* KeychainStorageProtocol.swift */,
+				BF2D5400C0CEDCBA7227B932 /* OnboardingDataStoreProtocol.swift */,
+				9697F769B52CB35264CD8970 /* RoutineProgressStoreProtocol.swift */,
+				ACC894FA714FE036CF1E3FB4 /* TokenStoreProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +188,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032E4B53C9EDED3BCB584019 /* Domain.swift in Sources */,
+				DBB3256A7944F04F7199B53A /* OnboardingData.swift in Sources */,
+				05B7EA9B5204820DFA0B71C0 /* RoutineProgress.swift in Sources */,
+				87548587B1588E2811C8B970 /* KeychainStorageProtocol.swift in Sources */,
+				B66EC54F812CE5C34950A79D /* OnboardingDataStoreProtocol.swift in Sources */,
+				628148224D6EF54622164A46 /* RoutineProgressStoreProtocol.swift in Sources */,
+				05ADDD52889097D1DAE01D99 /* TokenStoreProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

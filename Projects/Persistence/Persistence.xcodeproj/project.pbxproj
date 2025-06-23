@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6324B0CB93E4D411FF1B9194 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F75D98CC5703A575F6C31F /* Persistence.swift */; };
+		864435F5D419BA4DC78E612C /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46D24C50026838FF0F0189F /* KeychainStorage.swift */; };
+		94B143EC3F586FDE00103F79 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536FC4E9E4603620BC9F21A /* KeychainTokenStore.swift */; };
 		A6B9B914939EA20B9226D0A2 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFFD212B86F1EBB0C03D906 /* Shared.framework */; };
+		CFAC65E47F9F1E2D0857A113 /* RoutineProgressUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7EE6749ED43B3326B67E1 /* RoutineProgressUserDefaultsStore.swift */; };
+		D63600D231A8EC850BF4D631 /* OnboardingDataUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3F713EB1FB57466D0A9DE /* OnboardingDataUserDefaultsStore.swift */; };
 		E26DBF443DE2C29E5ACC1169 /* DataSource.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 5C949FFC1403EADC87574CE7 /* DataSource.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +40,13 @@
 
 /* Begin PBXFileReference section */
 		1D6776510A9207ABA67C76C5 /* Persistence-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Persistence-Info.plist"; sourceTree = "<group>"; };
+		58F3F713EB1FB57466D0A9DE /* OnboardingDataUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataUserDefaultsStore.swift; sourceTree = "<group>"; };
 		5C949FFC1403EADC87574CE7 /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9536FC4E9E4603620BC9F21A /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		9CFFD212B86F1EBB0C03D906 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F75D98CC5703A575F6C31F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C035FCC97F2CD769B88AA006 /* Persistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4E7EE6749ED43B3326B67E1 /* RoutineProgressUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgressUserDefaultsStore.swift; sourceTree = "<group>"; };
+		F46D24C50026838FF0F0189F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		16045CE0BA55290C310836D8 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				F46D24C50026838FF0F0189F /* KeychainStorage.swift */,
+				9536FC4E9E4603620BC9F21A /* KeychainTokenStore.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 		75872F76B583876BD809823B /* Derived */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,10 +95,20 @@
 			name = Project;
 			sourceTree = "<group>";
 		};
+		825CC988CDB56BF726B3B4B5 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				58F3F713EB1FB57466D0A9DE /* OnboardingDataUserDefaultsStore.swift */,
+				E4E7EE6749ED43B3326B67E1 /* RoutineProgressUserDefaultsStore.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		9C6119BB6C4D0F0EAA11CC33 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B4F75D98CC5703A575F6C31F /* Persistence.swift */,
+				16045CE0BA55290C310836D8 /* Keychain */,
+				825CC988CDB56BF726B3B4B5 /* UserDefaults */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -171,7 +196,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6324B0CB93E4D411FF1B9194 /* Persistence.swift in Sources */,
+				864435F5D419BA4DC78E612C /* KeychainStorage.swift in Sources */,
+				94B143EC3F586FDE00103F79 /* KeychainTokenStore.swift in Sources */,
+				D63600D231A8EC850BF4D631 /* OnboardingDataUserDefaultsStore.swift in Sources */,
+				CFAC65E47F9F1E2D0857A113 /* RoutineProgressUserDefaultsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
