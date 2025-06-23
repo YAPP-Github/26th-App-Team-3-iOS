@@ -15,11 +15,11 @@ public final class SimpleUserDefaultsStore {
         self.userDefaults = userDefaults
     }
 
-    public func set(_ value: Any?, forKey key: String) {
+    public func save(value: Any?, forKey key: String) {
         userDefaults.set(value, forKey: key)
     }
 
-    public func get<T>(forKey key: String) -> T? {
+    public func load<T>(forKey key: String) -> T? {
         return userDefaults.object(forKey: key) as? T
     }
 
