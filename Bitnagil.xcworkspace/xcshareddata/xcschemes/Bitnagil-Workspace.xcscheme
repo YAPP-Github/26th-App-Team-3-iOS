@@ -42,6 +42,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AED19AA06D0E2E3A22B4D9A0"
+               BuildableName = "DataSource_DataSource.bundle"
+               BlueprintName = "DataSource_DataSource"
+               ReferencedContainer = "container:Projects/DataSource/DataSource.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C538ACB2975E6B55AFA02B19"
                BuildableName = "Domain.framework"
                BlueprintName = "Domain"

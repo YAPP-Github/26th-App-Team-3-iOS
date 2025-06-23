@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		032E4B53C9EDED3BCB584019 /* Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F491B7F514684708DC6E0D4 /* Domain.swift */; };
+		1CB61F792E706FBAD68A8533 /* TestRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7279CDAFEBE22BB17C441555 /* TestRepositoryProtocol.swift */; };
 		8952BE4BECBFDB70C6F5C838 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88290FF5D0840A64CDD73D68 /* Shared.framework */; };
+		97B47C308F0424EE944FF268 /* TestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B04A8E13F160368F798C9B6 /* TestUseCase.swift */; };
+		CDE3B26AF208867C7AC94147 /* TestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F73D87CCAC17578AE471A /* TestEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,8 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		358F73D87CCAC17578AE471A /* TestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEntity.swift; sourceTree = "<group>"; };
+		6B04A8E13F160368F798C9B6 /* TestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUseCase.swift; sourceTree = "<group>"; };
+		7279CDAFEBE22BB17C441555 /* TestRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepositoryProtocol.swift; sourceTree = "<group>"; };
 		88290FF5D0840A64CDD73D68 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F491B7F514684708DC6E0D4 /* Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.swift; sourceTree = "<group>"; };
 		BD15A37E85BAE3A36B2CE72C /* Domain-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Domain-Info.plist"; sourceTree = "<group>"; };
 		FD49F277B86481D3D105FAC8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -43,12 +47,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0312E8562ED7D7FDA7627F90 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				6B04A8E13F160368F798C9B6 /* TestUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		0341B6BC3BB2B1CDE266CAF5 /* Derived */ = {
 			isa = PBXGroup;
 			children = (
 				BFC9D7B14C1B3B0AB857D8F2 /* InfoPlists */,
 			);
 			path = Derived;
+			sourceTree = "<group>";
+		};
+		1E26175B450A8825F000DB11 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7279CDAFEBE22BB17C441555 /* TestRepositoryProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		23FB790DBB2E2B4343512188 /* Products */ = {
@@ -63,7 +83,9 @@
 		28B694539E22431DAF52B883 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9F491B7F514684708DC6E0D4 /* Domain.swift */,
+				94B1D311211D6A02459E7B53 /* Entities */,
+				1E26175B450A8825F000DB11 /* Protocols */,
+				0312E8562ED7D7FDA7627F90 /* UseCases */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -83,6 +105,14 @@
 				28B694539E22431DAF52B883 /* Sources */,
 			);
 			name = Project;
+			sourceTree = "<group>";
+		};
+		94B1D311211D6A02459E7B53 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				358F73D87CCAC17578AE471A /* TestEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		BFC9D7B14C1B3B0AB857D8F2 /* InfoPlists */ = {
@@ -157,7 +187,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032E4B53C9EDED3BCB584019 /* Domain.swift in Sources */,
+				CDE3B26AF208867C7AC94147 /* TestEntity.swift in Sources */,
+				1CB61F792E706FBAD68A8533 /* TestRepositoryProtocol.swift in Sources */,
+				97B47C308F0424EE944FF268 /* TestUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
