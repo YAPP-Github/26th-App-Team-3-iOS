@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38E12FEA2E095B9500D439E7 /* SimpleUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E12FE92E095B8A00D439E7 /* SimpleUserDefaultsStore.swift */; };
 		864435F5D419BA4DC78E612C /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46D24C50026838FF0F0189F /* KeychainStorage.swift */; };
-		94B143EC3F586FDE00103F79 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536FC4E9E4603620BC9F21A /* KeychainTokenStore.swift */; };
 		A6B9B914939EA20B9226D0A2 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFFD212B86F1EBB0C03D906 /* Shared.framework */; };
-		CFAC65E47F9F1E2D0857A113 /* RoutineProgressUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7EE6749ED43B3326B67E1 /* RoutineProgressUserDefaultsStore.swift */; };
-		D63600D231A8EC850BF4D631 /* OnboardingDataUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3F713EB1FB57466D0A9DE /* OnboardingDataUserDefaultsStore.swift */; };
 		E26DBF443DE2C29E5ACC1169 /* DataSource.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 5C949FFC1403EADC87574CE7 /* DataSource.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,12 +38,10 @@
 
 /* Begin PBXFileReference section */
 		1D6776510A9207ABA67C76C5 /* Persistence-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Persistence-Info.plist"; sourceTree = "<group>"; };
-		58F3F713EB1FB57466D0A9DE /* OnboardingDataUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataUserDefaultsStore.swift; sourceTree = "<group>"; };
+		38E12FE92E095B8A00D439E7 /* SimpleUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleUserDefaultsStore.swift; sourceTree = "<group>"; };
 		5C949FFC1403EADC87574CE7 /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9536FC4E9E4603620BC9F21A /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		9CFFD212B86F1EBB0C03D906 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C035FCC97F2CD769B88AA006 /* Persistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4E7EE6749ED43B3326B67E1 /* RoutineProgressUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgressUserDefaultsStore.swift; sourceTree = "<group>"; };
 		F46D24C50026838FF0F0189F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				F46D24C50026838FF0F0189F /* KeychainStorage.swift */,
-				9536FC4E9E4603620BC9F21A /* KeychainTokenStore.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -98,8 +93,7 @@
 		825CC988CDB56BF726B3B4B5 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				58F3F713EB1FB57466D0A9DE /* OnboardingDataUserDefaultsStore.swift */,
-				E4E7EE6749ED43B3326B67E1 /* RoutineProgressUserDefaultsStore.swift */,
+				38E12FE92E095B8A00D439E7 /* SimpleUserDefaultsStore.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -162,6 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1620;
 			};
 			buildConfigurationList = BFF0F68AAE2C8DF514E8196D /* Build configuration list for PBXProject "Persistence" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -197,9 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				864435F5D419BA4DC78E612C /* KeychainStorage.swift in Sources */,
-				94B143EC3F586FDE00103F79 /* KeychainTokenStore.swift in Sources */,
-				D63600D231A8EC850BF4D631 /* OnboardingDataUserDefaultsStore.swift in Sources */,
-				CFAC65E47F9F1E2D0857A113 /* RoutineProgressUserDefaultsStore.swift in Sources */,
+				38E12FEA2E095B9500D439E7 /* SimpleUserDefaultsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +238,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -304,6 +298,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -327,6 +322,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/Persistence-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -336,6 +332,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.persistence;
 				PRODUCT_NAME = Persistence;
 				SDKROOT = iphoneos;
@@ -343,10 +340,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -365,6 +359,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/Persistence-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -374,6 +369,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.persistence;
 				PRODUCT_NAME = Persistence;
 				SDKROOT = iphoneos;

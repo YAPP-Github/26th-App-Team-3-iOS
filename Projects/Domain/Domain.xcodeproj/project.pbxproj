@@ -3,16 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05ADDD52889097D1DAE01D99 /* TokenStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC894FA714FE036CF1E3FB4 /* TokenStoreProtocol.swift */; };
 		05B7EA9B5204820DFA0B71C0 /* RoutineProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86890AD3EE19FA54F4173C8C /* RoutineProgress.swift */; };
-		628148224D6EF54622164A46 /* RoutineProgressStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697F769B52CB35264CD8970 /* RoutineProgressStoreProtocol.swift */; };
-		87548587B1588E2811C8B970 /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD847E19927DC4E502CE710E /* KeychainStorageProtocol.swift */; };
 		8952BE4BECBFDB70C6F5C838 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88290FF5D0840A64CDD73D68 /* Shared.framework */; };
-		B66EC54F812CE5C34950A79D /* OnboardingDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D5400C0CEDCBA7227B932 /* OnboardingDataStoreProtocol.swift */; };
 		DBB3256A7944F04F7199B53A /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317CD2662840FE470830B33 /* OnboardingData.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,11 +29,7 @@
 		5317CD2662840FE470830B33 /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		86890AD3EE19FA54F4173C8C /* RoutineProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgress.swift; sourceTree = "<group>"; };
 		88290FF5D0840A64CDD73D68 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9697F769B52CB35264CD8970 /* RoutineProgressStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProgressStoreProtocol.swift; sourceTree = "<group>"; };
-		ACC894FA714FE036CF1E3FB4 /* TokenStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStoreProtocol.swift; sourceTree = "<group>"; };
-		AD847E19927DC4E502CE710E /* KeychainStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorageProtocol.swift; sourceTree = "<group>"; };
 		BD15A37E85BAE3A36B2CE72C /* Domain-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Domain-Info.plist"; sourceTree = "<group>"; };
-		BF2D5400C0CEDCBA7227B932 /* OnboardingDataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataStoreProtocol.swift; sourceTree = "<group>"; };
 		FD49F277B86481D3D105FAC8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				11B3611D1728B87E7C917C63 /* Entity */,
-				C9F50C9EBF78ADE3C345A753 /* Protocol */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -111,17 +102,6 @@
 				BD15A37E85BAE3A36B2CE72C /* Domain-Info.plist */,
 			);
 			path = InfoPlists;
-			sourceTree = "<group>";
-		};
-		C9F50C9EBF78ADE3C345A753 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				AD847E19927DC4E502CE710E /* KeychainStorageProtocol.swift */,
-				BF2D5400C0CEDCBA7227B932 /* OnboardingDataStoreProtocol.swift */,
-				9697F769B52CB35264CD8970 /* RoutineProgressStoreProtocol.swift */,
-				ACC894FA714FE036CF1E3FB4 /* TokenStoreProtocol.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +134,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1620;
 			};
 			buildConfigurationList = 5B17347D429F14C389327C78 /* Build configuration list for PBXProject "Domain" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -190,10 +171,6 @@
 			files = (
 				DBB3256A7944F04F7199B53A /* OnboardingData.swift in Sources */,
 				05B7EA9B5204820DFA0B71C0 /* RoutineProgress.swift in Sources */,
-				87548587B1588E2811C8B970 /* KeychainStorageProtocol.swift in Sources */,
-				B66EC54F812CE5C34950A79D /* OnboardingDataStoreProtocol.swift in Sources */,
-				628148224D6EF54622164A46 /* RoutineProgressStoreProtocol.swift in Sources */,
-				05ADDD52889097D1DAE01D99 /* TokenStoreProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +216,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -262,6 +240,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/Domain-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -270,6 +249,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.domain;
 				PRODUCT_NAME = Domain;
 				SDKROOT = iphoneos;
@@ -325,6 +305,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -354,6 +335,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/Domain-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -362,6 +344,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.domain;
 				PRODUCT_NAME = Domain;
 				SDKROOT = iphoneos;
@@ -369,10 +352,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
