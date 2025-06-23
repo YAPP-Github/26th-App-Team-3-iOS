@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B7711A50A769C1EC9C89C0C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C41C8487722085FEE05DE5 /* NetworkService.swift */; };
+		1D6C07C8F1BC217B376BD68C /* Endpoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D509993123472BDECEEF0 /* Endpoint+.swift */; };
+		A0C23ED5966581DDC2CF7300 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820A43BBDDB8A486DD0E067 /* NetworkError.swift */; };
 		A2C9E5DADF68F81C3CEF2A1D /* DataSource.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = EA0240C54A9D5A70C45CE5CA /* DataSource.framework */; };
+		B7AD48CF464BD752348E08FD /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D40330B1F74F59B45460876 /* URLRequest+.swift */; };
 		DEB5FF9533E7291594ADCC64 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5870AA60285FBE66073DD953 /* Shared.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,9 +40,12 @@
 
 /* Begin PBXFileReference section */
 		5870AA60285FBE66073DD953 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		654D509993123472BDECEEF0 /* Endpoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+.swift"; sourceTree = "<group>"; };
+		7D40330B1F74F59B45460876 /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		90C41C8487722085FEE05DE5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		ADC9183B12D666BFB5351F52 /* NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C463F8FAE8AE26DF76BDB73C /* NetworkService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NetworkService-Info.plist"; sourceTree = "<group>"; };
+		C820A43BBDDB8A486DD0E067 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		EA0240C54A9D5A70C45CE5CA /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,6 +72,8 @@
 		38525DA2689C825D960A837C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C69C943FB685E38B8445E593 /* Extensions */,
+				C820A43BBDDB8A486DD0E067 /* NetworkError.swift */,
 				90C41C8487722085FEE05DE5 /* NetworkService.swift */,
 			);
 			path = Sources;
@@ -87,6 +95,15 @@
 				5870AA60285FBE66073DD953 /* Shared.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C69C943FB685E38B8445E593 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				654D509993123472BDECEEF0 /* Endpoint+.swift */,
+				7D40330B1F74F59B45460876 /* URLRequest+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EC532597712A1FBA04CFD78C /* InfoPlists */ = {
@@ -171,6 +188,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6C07C8F1BC217B376BD68C /* Endpoint+.swift in Sources */,
+				B7AD48CF464BD752348E08FD /* URLRequest+.swift in Sources */,
+				A0C23ED5966581DDC2CF7300 /* NetworkError.swift in Sources */,
 				0B7711A50A769C1EC9C89C0C /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
