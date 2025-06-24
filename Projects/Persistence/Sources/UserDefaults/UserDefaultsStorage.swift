@@ -8,7 +8,7 @@
 import Foundation
 
 /// 간단한 Key-Value 저장을 위한 UserDefaults Store
-public final class SimpleUserDefaultsStore {
+public final class UserDefaultsStorage {
     private let userDefaults: UserDefaults
 
     public init(userDefaults: UserDefaults = .standard) {
@@ -20,7 +20,7 @@ public final class SimpleUserDefaultsStore {
     }
 
     public func load<T>(forKey key: String) -> T? {
-        return userDefaults.object(forKey: key) as? T
+        userDefaults.object(forKey: key) as? T
     }
 
     public func remove(forKey key: String) {

@@ -18,7 +18,7 @@ public final class KeychainStorage: KeyValueStorageProtocol {
         self.accessGroup = accessGroup
     }
 
-    public func set(_ value: String, forKey key: String) -> Bool {
+    public func save(_ value: String, forKey key: String) -> Bool {
         guard let data = value.data(using: .utf8) else {
             return false
         }
@@ -42,7 +42,7 @@ public final class KeychainStorage: KeyValueStorageProtocol {
         return status == errSecSuccess
     }
 
-    public func get(forKey key: String) -> String? {
+    public func load(forKey key: String) -> String? {
         var query = baseQuery(for: key)
         query[kSecReturnData as String] = kCFBooleanTrue
         query[kSecMatchLimit as String] = kSecMatchLimitOne

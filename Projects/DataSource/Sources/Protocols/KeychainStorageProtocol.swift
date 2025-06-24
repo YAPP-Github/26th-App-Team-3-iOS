@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol KeyValueStorageProtocol {
-    func set(_ value: String, forKey key: String) -> Bool
-    func getValue(forKey key: String) -> String?
-    func removeValue(forKey key: String) -> Bool
+    func save(_ value: String, forKey key: String) -> Bool
+    func load(forKey key: String) -> String?
+    func remove(forKey key: String) -> Bool
 }
