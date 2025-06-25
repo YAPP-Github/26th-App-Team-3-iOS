@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -49,13 +49,6 @@
 			path = Derived;
 			sourceTree = "<group>";
 		};
-		11B3611D1728B87E7C917C63 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
 		23FB790DBB2E2B4343512188 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,14 +56,6 @@
 				88290FF5D0840A64CDD73D68 /* Shared.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		28B694539E22431DAF52B883 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				11B3611D1728B87E7C917C63 /* Entity */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		31AD0DDEDFC02FF4D89A76D4 = {
@@ -85,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				0341B6BC3BB2B1CDE266CAF5 /* Derived */,
-				28B694539E22431DAF52B883 /* Sources */,
 			);
 			name = Project;
 			sourceTree = "<group>";
@@ -337,7 +321,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

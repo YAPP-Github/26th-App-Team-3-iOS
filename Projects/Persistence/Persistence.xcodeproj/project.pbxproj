@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38341E1C2E0A8A8D0067729C /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38341E1B2E0A8A8C0067729C /* UserDefaultsStorage.swift */; };
 		864435F5D419BA4DC78E612C /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46D24C50026838FF0F0189F /* KeychainStorage.swift */; };
 		A6B9B914939EA20B9226D0A2 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFFD212B86F1EBB0C03D906 /* Shared.framework */; };
+		B13DD037A361F57AF14EC2CC /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EBC384A5A03057FE9C6065 /* UserDefaultsStorage.swift */; };
 		E26DBF443DE2C29E5ACC1169 /* DataSource.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 5C949FFC1403EADC87574CE7 /* DataSource.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,10 +38,10 @@
 
 /* Begin PBXFileReference section */
 		1D6776510A9207ABA67C76C5 /* Persistence-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Persistence-Info.plist"; sourceTree = "<group>"; };
-		38341E1B2E0A8A8C0067729C /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		5C949FFC1403EADC87574CE7 /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFFD212B86F1EBB0C03D906 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C035FCC97F2CD769B88AA006 /* Persistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EBC384A5A03057FE9C6065 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		F46D24C50026838FF0F0189F /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +93,7 @@
 		825CC988CDB56BF726B3B4B5 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				38341E1B2E0A8A8C0067729C /* UserDefaultsStorage.swift */,
+				C7EBC384A5A03057FE9C6065 /* UserDefaultsStorage.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -191,7 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				864435F5D419BA4DC78E612C /* KeychainStorage.swift in Sources */,
-				38341E1C2E0A8A8D0067729C /* UserDefaultsStorage.swift in Sources */,
+				B13DD037A361F57AF14EC2CC /* UserDefaultsStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +335,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

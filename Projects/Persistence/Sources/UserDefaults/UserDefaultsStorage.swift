@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import DataSource
 
 /// 간단한 Key-Value 저장을 위한 UserDefaults Store
-public final class UserDefaultsStorage {
+public final class UserDefaultsStorage: UserDefaultsStorageProtocol {
     private let userDefaults: UserDefaults
 
     public init(userDefaults: UserDefaults = .standard) {
