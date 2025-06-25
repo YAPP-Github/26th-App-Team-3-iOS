@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol UserDefaultsStorageProtocol {
-    func save(_ value: String?, forKey key: String) -> Bool
-    func load(forKey key: String) -> String?
+    func save(_ value: Any?, forKey key: String) -> Bool
+    func load<T>(forKey key: String) -> T?
     func remove(forKey key: String) -> Bool
 }
