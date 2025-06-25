@@ -9,7 +9,7 @@ import Foundation
 import DataSource
 
 /// Keychain에 문자열 값을 저장하고 불러오는 저장소입니다.
-public final class KeychainStorage: KeyValueStorageProtocol {
+public final class KeychainStorage: KeychainStorageProtocol {
     private let service: String
     private let accessGroup: String?
 
