@@ -16,15 +16,18 @@ public final class UserDefaultsStorage: UserDefaultsStorageProtocol {
         self.userDefaults = userDefaults
     }
 
-    public func save(value: Any?, forKey key: String) {
-        userDefaults.set(value, forKey: key)
-    }
+    public func save(_ value: String?, forKey key: String) -> Bool {
+           userDefaults.set(value, forKey: key)
+           return (userDefaults.string(forKey: key) == value)
+       }
 
-    public func load<T>(forKey key: String) -> T? {
-        userDefaults.object(forKey: key) as? T
-    }
+       public func load(forKey key: String) -> String? {
+           userDefaults.string(forKey: key)
+       }
 
-    public func remove(forKey key: String) {
-        userDefaults.removeObject(forKey: key)
-    }
-}
+       @discardableResult
+       public func remove(forKey key: String) -> Bool {
+           userDefaults.removeObject(forKey: key)
+           return userDefaults.object(forKey: key) == nil
+       }
+   }
