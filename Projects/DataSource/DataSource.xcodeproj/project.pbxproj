@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		04248AC07EF7C561629220D4 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBCB96722F90914CB2EC15B /* Shared.framework */; };
 		24EB34C9612C67F807B36FC0 /* BaseResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE682F2D257198BA363E0CBB /* BaseResponseDTO.swift */; };
+		38E12FE82E094C3200D439E7 /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E12FE72E094C3200D439E7 /* KeychainStorageProtocol.swift */; };
 		40B3EAFCE7E70C99028540D7 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978C408D448C4210F6E4BAF8 /* NetworkServiceProtocol.swift */; };
 		4553354DFBF0312EB968B11F /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F790F52CC0D64AF84B73C5 /* TestRepository.swift */; };
 		51DBACDB7A9D8D46AF08CFB1 /* TuistBundle+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAE956BE2D9926E9A22ADF /* TuistBundle+DataSource.swift */; };
@@ -61,6 +62,7 @@
 		19AD44CFA8C16BD75C144C6A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		24A1674CACD751CD6CF69204 /* AppProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProperties.swift; sourceTree = "<group>"; };
 		2DEACD5EC6C35913BBCFC3E5 /* HealthCheckRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCheckRequestDTO.swift; sourceTree = "<group>"; };
+		38E12FE72E094C3200D439E7 /* KeychainStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorageProtocol.swift; sourceTree = "<group>"; };
 		3CBCB96722F90914CB2EC15B /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6069F156A6F8EC50E8646060 /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FFAE956BE2D9926E9A22ADF /* TuistBundle+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+DataSource.swift"; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 				19AD44CFA8C16BD75C144C6A /* HTTPMethod.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		38E12FDF2E094AD100D439E7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				38E12FE72E094C3200D439E7 /* KeychainStorageProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		3B3D90519B713912DA21AB8C /* Repositories */ = {
@@ -202,6 +212,7 @@
 		F3DFA10A9D80DE0FEBD2D32E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				38E12FDF2E094AD100D439E7 /* Protocols */,
 				7197A43B0DB19D609772738B /* DTO */,
 				59A7A28D6ED4CD892AEC4DFE /* Endpoints */,
 				2FED8A84F500D508FBEDE55D /* Network */,
@@ -261,6 +272,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1620;
 			};
 			buildConfigurationList = 6E3D74FB039C1925808201CC /* Build configuration list for PBXProject "DataSource" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -313,6 +325,7 @@
 				F88DDF2AD24570A292FBFAEF /* HTTPMethod.swift in Sources */,
 				40B3EAFCE7E70C99028540D7 /* NetworkServiceProtocol.swift in Sources */,
 				4553354DFBF0312EB968B11F /* TestRepository.swift in Sources */,
+				38E12FE82E094C3200D439E7 /* KeychainStorageProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +381,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.datasource;
 				PRODUCT_NAME = DataSource;
 				SDKROOT = iphoneos;
@@ -424,6 +438,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -456,6 +471,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitnagil.datasource;
 				PRODUCT_NAME = DataSource;
 				SDKROOT = iphoneos;
@@ -463,10 +479,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -542,6 +555,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
