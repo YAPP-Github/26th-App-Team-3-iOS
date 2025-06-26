@@ -13,13 +13,11 @@ import Then
 import Shared
 
 public final class HomeViewController: BaseViewController<HomeViewModel> {
-    private let viewModel: HomeViewModel
     private var cancellables: Set<AnyCancellable>
 
     private let label = UILabel()
 
     public override init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
         cancellables = []
         super.init(viewModel: viewModel)
     }
