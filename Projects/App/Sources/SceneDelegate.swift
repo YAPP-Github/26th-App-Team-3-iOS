@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DIContainer.shared.register(type: TestRepositoryProtocol.self, instance: testRepository)
 
         let testUseCase: TestUseCase = TestUseCase(testRepository: testRepository)
-        DIContainer.shared.register(type: TestUseCase.self, instance: testUseCase)
+        DIContainer.shared.register(type: TestUseCaseProtocol.self, instance: testUseCase)
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -32,8 +32,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         dependencyInjection()
 
-        let testUseCase = DIContainer.shared.resolve(type: TestUseCase.self)!
-        let navigationController = UINavigationController(rootViewController: HomeViewController(usecase: testUseCase))
+        let testUseCase = DIContainer.shared.resolve(type: TestUseCaseProtocol.self)!
+        let homeViewModel = HomeViewModel(testUseCase: testUseCase)
+        let navigationController = UINavigationController(rootViewController: HomeViewController(viewModel: homeViewModel))
         navigationController.isNavigationBarHidden = true
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
