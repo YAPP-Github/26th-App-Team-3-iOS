@@ -6,22 +6,26 @@
 //
 
 import Foundation
+import Combine
 import Shared
 
-public final class TestUseCase {
+public final class TestUseCase: TestUseCaseProtocol {
+    public let testEntitySubject: CurrentValueSubject<TestEntity?, Never>
     private let testRepository: TestRepositoryProtocol
 
     public init(testRepository: TestRepositoryProtocol) {
+        testEntitySubject = CurrentValueSubject<TestEntity?, Never>(nil)
         self.testRepository = testRepository
     }
 
-    public func healthCheck() async -> TestEntity? {
-        do {
-            let entity = try await testRepository.healthCheck()
-            return entity
-        } catch {
-            BitnagilLogger.log(logType: .error, message: error.localizedDescription)
+    public func healthCheck() {
+        Task {
+            do {
+                let entity = try await testRepository.healthCheck()
+                testEntitySubject.send(entity)
+            } catch {
+                BitnagilLogger.log(logType: .error, message: error.localizedDescription)
+            }
         }
-        return nil
     }
 }
