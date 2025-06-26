@@ -9,7 +9,6 @@ let project = Project(
             product: .staticFramework,
             bundleId: "com.bitnagil.persistence",
             deploymentTargets: .iOS("15.0"),
-            infoPlist: .default,
             sources: ["Sources/**"],
             dependencies: [
                 .project(target: "DataSource", path: "../DataSource"),

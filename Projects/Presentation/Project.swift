@@ -9,9 +9,8 @@ let project = Project(
             product: .framework,
             bundleId: "com.bitnagil.presentation",
             deploymentTargets: .iOS("15.0"),
-            infoPlist: .default,
             sources: ["Sources/**"],
-            resources: [],
+            resources: ["Resources/**"],
             dependencies: [
                 .external(name: "SnapKit"),
                 .external(name: "Then"),
