@@ -9,14 +9,16 @@ import Foundation
 import DataSource
 
 public final class NetworkService: NetworkServiceProtocol {
-    private let session = URLSession.shared
+    private let networkProvider: NetworkProviderProtocol
     private let decoder = JSONDecoder()
 
-    public init() { }
+    public init(networkProvider: NetworkProviderProtocol = URLSession.shared) {
+        self.networkProvider = networkProvider
+    }
 
     public func request<T: Decodable>(endpoint: Endpoint, type: T.Type) async throws -> T {
         let request = try endpoint.makeURLRequest()
-        let (data, response) = try await session.data(for: request)
+        let (data, response) = try await networkProvider.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse
