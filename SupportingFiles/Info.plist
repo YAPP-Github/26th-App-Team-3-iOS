@@ -27,7 +27,7 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>KakaoNavtiveKey</key>
+	<key>KakaoNativeKey</key>
 	<string>$(KAKAO_NATIVE_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
