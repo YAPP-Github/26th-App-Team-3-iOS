@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum AppProperties {
+public enum AppProperties {
     static var baseURL: String {
         Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String ?? ""
+    }
+
+    public static var kakaoNativeKey: String {
+        Bundle.main.object(forInfoDictionaryKey: "KakaoNativeKey") as? String ?? ""
     }
 }
