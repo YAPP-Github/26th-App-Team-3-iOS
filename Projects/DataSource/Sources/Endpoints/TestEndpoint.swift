@@ -33,5 +33,11 @@ extension TestEndpoint: Endpoint {
         return ["accept": "*/*"]
     }
 
-    var parameters: [String : Any] { return [:] }
+    var queryParameters: [String : String] {
+        return [:]
+    }
+
+    var bodyParameters: [String : Any] {
+        return [:]
+    }
 }

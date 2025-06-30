@@ -24,5 +24,12 @@ public struct DomainDependencyAssembler: DependencyAssemblerProtocol {
             }
             return TestUseCase(testRepository: testRepository)
         }
+
+        DIContainer.shared.register(type: LoginUseCaseProtocol.self) { container in
+            guard let authRepository = container.resolve(type: AuthRepositoryProtocol.self) else {
+                return
+            }
+            return LoginUseCase(authRepository: authRepository)
+        }
     }
 }

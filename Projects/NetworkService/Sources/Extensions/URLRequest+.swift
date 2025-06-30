@@ -6,11 +6,18 @@
 //
 
 import Foundation
-import DataSource
 
 extension URLRequest {
-    init(urlString: String) throws {
-        guard let url = URL(string: urlString) else {
+    init(urlString: String, queryParameters: [String: String]) throws {
+        guard var components = URLComponents(string: urlString) else {
+            throw NetworkError.invalidURL
+        }
+
+        if !queryParameters.isEmpty {
+            components.queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+        }
+
+        guard let url = components.url else {
             throw NetworkError.invalidURL
         }
 
@@ -19,28 +26,12 @@ extension URLRequest {
 
     mutating func makeHeaders(headers: [String: String]) {
         for header in headers {
-            addValue(header.value, forHTTPHeaderField: header.value)
+            addValue(header.value, forHTTPHeaderField: header.key)
         }
     }
 
-    mutating func makeParameters(
-        with parameters: [String: Any],
-        method: HTTPMethod,
-        path: String
-    ) throws {
-        switch method {
-        case .get:
-            guard var components = URLComponents(string: path) else {
-                throw NetworkError.invalidURL
-            }
-
-            components.queryItems = parameters.map {
-                URLQueryItem(name: $0.key, value: $0.value as? String)
-            }
-
-            try self = URLRequest(urlString: components.url?.absoluteString ?? "")
-        default:
-            httpBody = try JSONSerialization.data(withJSONObject: parameters)
-        }
+    mutating func makeBodyParameter(with parameters: [String: Any]) throws {
+        if parameters.isEmpty { return }
+        httpBody = try JSONSerialization.data(withJSONObject: parameters)
     }
 }
