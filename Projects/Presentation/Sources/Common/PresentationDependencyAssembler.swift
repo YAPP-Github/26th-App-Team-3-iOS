@@ -20,8 +20,17 @@ public struct PresentationDependencyAssembler: DependencyAssemblerProtocol {
         preAssembler.assemble()
         
         DIContainer.shared.register(type: HomeViewModel.self) { container in
-            guard let testUseCase = container.resolve(type: TestUseCaseProtocol.self) else { return }
+            guard let testUseCase = container.resolve(type: TestUseCaseProtocol.self) else {
+                return
+            }
             return HomeViewModel(testUseCase: testUseCase)
+        }
+
+        DIContainer.shared.register(type: LoginViewModel.self) { container in
+            guard let loginUseCase = container.resolve(type: LoginUseCaseProtocol.self) else {
+                return
+            }
+            return LoginViewModel(loginUseCase: loginUseCase)
         }
     }
 }
