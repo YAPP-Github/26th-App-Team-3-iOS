@@ -29,13 +29,24 @@ extension AuthEndpoint: Endpoint {
     }
     
     var headers: [String : String] {
+        var headers: [String: String] = [
+            "Content-Type": "application/json",
+            "accept": "*/*"
+        ]
+
         switch self {
         case .login(_, _, let token):
-            return ["Authorization": token]
+            headers["SocialAccessToken"] = token
         }
+
+        return headers
     }
     
     var queryParameters: [String : String] {
+        return [:]
+    }
+    
+    var bodyParameters: [String : Any] {
         switch self {
         case .login(let socialLoginType, let nickname, _):
             var parameters = ["socialType": socialLoginType.rawValue]
@@ -43,13 +54,6 @@ extension AuthEndpoint: Endpoint {
                 parameters["nickname"] = nickname
             }
             return parameters
-        }
-    }
-    
-    var bodyParameters: [String : Any] {
-        switch self {
-        case .login:
-            return [:]
         }
     }
 }

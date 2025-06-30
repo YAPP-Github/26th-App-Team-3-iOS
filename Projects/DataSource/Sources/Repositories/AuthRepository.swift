@@ -62,6 +62,8 @@ public final class AuthRepository: AuthRepositoryProtocol {
         else {
             throw AuthError.failTokenSave
         }
+        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(tokenEntity.accessToken)")
+        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(tokenEntity.refreshToken)")
     }
 
     private func saveToken(tokenType: TokenType, token: String) -> Bool {
