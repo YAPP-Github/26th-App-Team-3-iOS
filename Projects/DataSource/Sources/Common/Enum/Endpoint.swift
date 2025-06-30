@@ -5,8 +5,6 @@
 //  Created by 최정인 on 6/21/25.
 //
 
-import Foundation
-
 public protocol Endpoint {
     var baseURL: String { get }
     var path: String { get }
