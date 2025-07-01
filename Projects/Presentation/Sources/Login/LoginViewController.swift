@@ -22,6 +22,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
 
     private var cancellables: Set<AnyCancellable>
     private let kakaoLoginButton = UIButton()
+    private let appleLoginButton = UIButton()
 
     public override init(viewModel: LoginViewModel) {
         cancellables = []
@@ -44,6 +45,14 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 self?.viewModel.action(input: .kakaoLogin)
             }, for: .touchUpInside)
         }
+
+        appleLoginButton.do {
+            $0.setTitle("Apple로 시작하기", for: .normal)
+            $0.setTitleColor(.blue, for: .normal)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.viewModel.action(input: .appleLogin)
+            }, for: .touchUpInside)
+        }
     }
 
     override func configureLayout() {
@@ -51,12 +60,20 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
         view.backgroundColor = .systemBackground
 
         view.addSubview(kakaoLoginButton)
+        view.addSubview(appleLoginButton)
+
+        appleLoginButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(safeArea).inset(Layout.loginButtonBottomSpacing)
+            make.height.equalTo(Layout.loginButtonHegiht)
+        }
 
         kakaoLoginButton.snp.makeConstraints { make in
-            make.leading.equalTo(safeArea).offset(Metrix.defaultMargin)
-            make.trailing.equalTo(safeArea).inset(Metrix.defaultMargin)
-            make.bottom.equalTo(safeArea).inset(Metrix.loginBottomPadding)
-            make.height.equalTo(Metrix.loginButtonHeight)
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(appleLoginButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHegiht)
         }
     }
 
