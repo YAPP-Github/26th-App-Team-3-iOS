@@ -13,10 +13,11 @@ import Then
 
 public final class LoginViewController: BaseViewController<LoginViewModel> {
 
-    private enum Metrix {
-        static let defaultMargin: CGFloat = 20
-        static let loginButtonHeight: CGFloat = 54
-        static let loginBottomPadding: CGFloat = 54
+    private enum Layout {
+        static let horizontalMargin: CGFloat = 20
+        static let loginButtonHegiht: CGFloat = 54
+        static let loginButtonBottomSpacing: CGFloat = 54
+        static let loginButtonSpacing: CGFloat = 8
     }
 
     private var cancellables: Set<AnyCancellable>
