@@ -32,7 +32,10 @@ public struct DataSourceDependencyAssembler: DependencyAssemblerProtocol {
         }
 
         DIContainer.shared.register(type: AuthRepositoryProtocol.self) { _ in
-            return AuthRepository(networkService: networkService, keychainStorage: keychainStorage)
+            return AuthRepository(
+                networkService: networkService,
+                keychainStorage: keychainStorage,
+                userDefaultsStorage: userDefaultsStorage)
         }
     }
 }
