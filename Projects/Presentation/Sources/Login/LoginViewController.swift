@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 import Combine
 import Shared
 import SnapKit
@@ -20,9 +21,9 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
         static let loginButtonSpacing: CGFloat = 8
     }
 
-    private var cancellables: Set<AnyCancellable>
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
+    private var cancellables: Set<AnyCancellable>
 
     public override init(viewModel: LoginViewModel) {
         cancellables = []
@@ -50,7 +51,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
             $0.setTitle("Apple로 시작하기", for: .normal)
             $0.setTitleColor(.blue, for: .normal)
             $0.addAction(UIAction { [weak self] _ in
-                self?.viewModel.action(input: .appleLogin)
+                self?.appleLogin()
             }, for: .touchUpInside)
         }
     }
@@ -62,17 +63,17 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
         view.addSubview(kakaoLoginButton)
         view.addSubview(appleLoginButton)
 
-        appleLoginButton.snp.makeConstraints { make in
-            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
-            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
-            make.bottom.equalTo(safeArea).inset(Layout.loginButtonBottomSpacing)
-            make.height.equalTo(Layout.loginButtonHegiht)
-        }
-
         kakaoLoginButton.snp.makeConstraints { make in
             make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
             make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
             make.bottom.equalTo(appleLoginButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHegiht)
+        }
+
+        appleLoginButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(safeArea).inset(Layout.loginButtonBottomSpacing)
             make.height.equalTo(Layout.loginButtonHegiht)
         }
     }
@@ -90,5 +91,53 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    private func appleLogin() {
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName]
+
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
+    }
+}
+
+// MARK: - ASAuthorizationControllerDelegate
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    public func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
+        guard
+            let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+            let authCodeData = credential.authorizationCode,
+            let authToken = String(data: authCodeData, encoding: .utf8)
+        else {
+            BitnagilLogger.log(logType: .error, message: "Apple AuthorizationCode 파싱 실패")
+            return
+        }
+
+        let givenName = credential.fullName?.givenName
+        let familyName = credential.fullName?.familyName
+
+        var nickname: String? = nil
+        if let givenName, let familyName {
+            nickname = "\(familyName)\(givenName)"
+        }
+        self.viewModel.action(input: .appleLogin(nickname: nickname, authToken: authToken))
+    }
+
+    public func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: any Error) {
+        BitnagilLogger.log(logType: .error, message: "Apple 로그인 실패")
+    }
+}
+
+// MARK: - ASAuthorizationControllerPresentationContextProviding
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    public func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window ?? UIWindow()
     }
 }
