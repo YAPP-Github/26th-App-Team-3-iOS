@@ -29,9 +29,11 @@ public final class AuthRepository: AuthRepositoryProtocol {
         try await withCheckedThrowingContinuation { continuation in
             let resultHandler: (OAuthToken?, Error?) -> Void = { oauthToken, error in
                 if let error {
-                    continuation.resume(throwing: error)
+                    continuation.resume(throwing: AuthError.unknown(error))
                 } else if let oauthToken {
                     continuation.resume(returning: oauthToken.accessToken)
+                } else {
+                    continuation.resume(throwing: AuthError.kakaoTokenFetchFailed)
                 }
             }
 
