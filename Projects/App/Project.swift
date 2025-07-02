@@ -20,6 +20,7 @@ let project = Project(
             infoPlist: .file(path: .relativeToRoot("SupportingFiles/Info.plist")),
             sources: ["Sources/**"],
             resources: ["Resources/**"],
+            entitlements: "App.entitlements",
             dependencies: [
                 .project(target: "Presentation", path: "../Presentation"),
                 .project(target: "Domain", path: "../Domain"),
