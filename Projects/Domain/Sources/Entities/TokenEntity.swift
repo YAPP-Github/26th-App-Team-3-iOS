@@ -8,15 +8,9 @@
 public struct TokenEntity {
     public let accessToken: String
     public let refreshToken: String
-    public let accessTokenExpiresIn: Int
 
-    public init(
-        accessToken: String,
-        refreshToken: String,
-        accessTokenExpiresIn: Int
-    ) {
+    public init(accessToken: String, refreshToken: String) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
-        self.accessTokenExpiresIn = accessTokenExpiresIn
     }
 }
