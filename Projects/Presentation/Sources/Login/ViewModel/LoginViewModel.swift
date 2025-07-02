@@ -7,10 +7,12 @@
 
 import Combine
 import Domain
+import Shared
 
 public final class LoginViewModel: ViewModel {
     public enum Input {
         case kakaoLogin
+        case appleLogin(nickname: String?, authToken: String)
     }
 
     public struct Output {
@@ -36,10 +38,21 @@ public final class LoginViewModel: ViewModel {
                     try await loginUseCase.kakaoLogin()
                     loginResultSubject.send(true)
                 } catch {
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
+                    loginResultSubject.send(false)
+                }
+            }
+
+        case .appleLogin(let nickname, let authToken):
+            Task {
+                do {
+                    try await loginUseCase.appleLogin(nickname: nickname, authToken: authToken)
+                    loginResultSubject.send(true)
+                } catch {
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
                     loginResultSubject.send(false)
                 }
             }
         }
     }
-
 }
