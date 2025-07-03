@@ -16,7 +16,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
 
     private enum Layout {
         static let horizontalMargin: CGFloat = 20
-        static let loginButtonHegiht: CGFloat = 54
+        static let loginButtonHeight: CGFloat = 54
         static let loginButtonBottomSpacing: CGFloat = 54
         static let loginButtonSpacing: CGFloat = 8
     }
@@ -67,14 +67,14 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
             make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
             make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
             make.bottom.equalTo(appleLoginButton.snp.top).offset(-Layout.loginButtonSpacing)
-            make.height.equalTo(Layout.loginButtonHegiht)
+            make.height.equalTo(Layout.loginButtonHeight)
         }
 
         appleLoginButton.snp.makeConstraints { make in
             make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
             make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
             make.bottom.equalTo(safeArea).inset(Layout.loginButtonBottomSpacing)
-            make.height.equalTo(Layout.loginButtonHegiht)
+            make.height.equalTo(Layout.loginButtonHeight)
         }
     }
 
