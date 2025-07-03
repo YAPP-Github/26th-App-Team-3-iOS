@@ -17,4 +17,8 @@ public final class LoginUseCase: LoginUseCaseProtocol {
     public func kakaoLogin() async throws {
         try await authRepository.kakaoLogin()
     }
+
+    public func appleLogin(nickname: String?, authToken: String) async throws {
+        try await authRepository.appleLogin(nickname: nickname, authToken: authToken)
+    }
 }
