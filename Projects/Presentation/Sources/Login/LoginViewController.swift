@@ -23,6 +23,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
 
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
+    private let logoutButton = UIButton()
     private var cancellables: Set<AnyCancellable>
 
     public override init(viewModel: LoginViewModel) {
@@ -54,6 +55,14 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 self?.appleLogin()
             }, for: .touchUpInside)
         }
+
+        logoutButton.do {
+            $0.setTitle("로그아웃", for: .normal)
+            $0.setTitleColor(.blue, for: .normal)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.viewModel.action(input: .logout)
+            }, for: .touchUpInside)
+        }
     }
 
     override func configureLayout() {
@@ -62,6 +71,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
 
         view.addSubview(kakaoLoginButton)
         view.addSubview(appleLoginButton)
+        view.addSubview(logoutButton)
 
         kakaoLoginButton.snp.makeConstraints { make in
             make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
@@ -76,6 +86,13 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
             make.bottom.equalTo(safeArea).inset(Layout.loginButtonBottomSpacing)
             make.height.equalTo(Layout.loginButtonHeight)
         }
+
+        logoutButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(kakaoLoginButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHeight)
+        }
     }
 
     override func bind() {
@@ -88,6 +105,17 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 } else {
                     // TODO: 로그인 실패 시, 에러 처리를 해야 합니다.
                     BitnagilLogger.log(logType: .error, message: "로그인 실패")
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.output.logoutResultPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { logoutResult in
+                if logoutResult {
+                    BitnagilLogger.log(logType: .debug, message: "로그아웃 성공")
+                } else {
+                    BitnagilLogger.log(logType: .debug, message: "로그아웃 실패")
                 }
             }
             .store(in: &cancellables)
