@@ -7,6 +7,6 @@
 
 struct BaseResponseDTO<T: Decodable>: Decodable {
     let code: String
-    let data: T
+    let data: T?
     let message: String
 }
