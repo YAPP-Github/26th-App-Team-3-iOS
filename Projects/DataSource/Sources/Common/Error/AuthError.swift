@@ -8,6 +8,8 @@
 enum AuthError: Error, CustomStringConvertible {
     case kakaoTokenFetchFailed
     case tokenSaveFailed
+    case tokenLoadFailed
+    case tokenRemoveFailed
     case nicknameSaveFailed
     case nicknameLoadFailed
     case unknown(Error)
@@ -18,6 +20,10 @@ enum AuthError: Error, CustomStringConvertible {
             return "카카오 토큰을 가져오는데 실패했습니다."
         case .tokenSaveFailed:
             return "토큰 저장에 실패했습니다."
+        case .tokenLoadFailed:
+            return "토큰 불러오기에 실패했습니다."
+        case .tokenRemoveFailed:
+            return "토큰 삭제에 실패했습니다."
         case .nicknameSaveFailed:
             return "닉네임 저장에 실패했습니다."
         case .nicknameLoadFailed:

@@ -37,8 +37,6 @@ public final class HomeViewController: BaseViewController<HomeViewModel> {
             $0.textColor = BitnagilColor.gray90
             $0.attributedText = BitnagilFont.headline1.attributedString(text: nil)
         }
-
-        viewModel.action(input: .healthCheck)
     }
 
     override func configureLayout() {
@@ -52,13 +50,5 @@ public final class HomeViewController: BaseViewController<HomeViewModel> {
     }
 
     override func bind() {
-        viewModel.output.testEntityPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] entity in
-                guard let entity else { return }
-                self?.label.text = entity.message
-                BitnagilLogger.log(logType: .debug, message: entity.message)
-            }
-            .store(in: &cancellables)
     }
 }
