@@ -9,31 +9,15 @@ import Combine
 import Domain
 
 public final class HomeViewModel: ViewModel {
-    public enum Input {
-        case healthCheck
-    }
+    public enum Input { }
 
-    public struct Output {
-        let testEntityPublisher: AnyPublisher<TestEntity?, Never>
-    }
+    public struct Output { }
 
     private(set) var output: Output
-    private let testUseCase: TestUseCaseProtocol
 
-    public init(testUseCase: TestUseCaseProtocol) {
-        self.testUseCase = testUseCase
-        self.output = Output(
-            testEntityPublisher: testUseCase.testEntitySubject.eraseToAnyPublisher()
-        )
+    public init() {
+        self.output = Output()
     }
 
-    public func action(input: Input) {
-        switch input {
-        case .healthCheck: healthCheck()
-        }
-    }
-
-    private func healthCheck() {
-        testUseCase.healthCheck()
-    }
+    public func action(input: Input) { }
 }
