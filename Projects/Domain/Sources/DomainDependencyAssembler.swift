@@ -18,18 +18,16 @@ public struct DomainDependencyAssembler: DependencyAssemblerProtocol {
     public func assemble() {
         preAssembler.assemble()
 
-        DIContainer.shared.register(type: TestUseCaseProtocol.self) { container in
-            guard let testRepository = container.resolve(type: TestRepositoryProtocol.self) else {
-                return
-            }
-            return TestUseCase(testRepository: testRepository)
+        guard let authRepository = DIContainer.shared.resolve(type: AuthRepositoryProtocol.self) else {
+            return
         }
 
-        DIContainer.shared.register(type: LoginUseCaseProtocol.self) { container in
-            guard let authRepository = container.resolve(type: AuthRepositoryProtocol.self) else {
-                return
-            }
+        DIContainer.shared.register(type: LoginUseCaseProtocol.self) { _ in
             return LoginUseCase(authRepository: authRepository)
+        }
+
+        DIContainer.shared.register(type: LogoutUseCaseProtocol.self) { _ in
+            return LogoutUseCase(authRepository: authRepository)
         }
     }
 }
