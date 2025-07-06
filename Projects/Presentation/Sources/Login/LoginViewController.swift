@@ -23,6 +23,9 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
 
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
+    private let logoutButton = UIButton()
+    private let withdrawButton = UIButton()
+    private let reissueButton = UIButton()
     private var cancellables: Set<AnyCancellable>
 
     public override init(viewModel: LoginViewModel) {
@@ -54,6 +57,30 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 self?.appleLogin()
             }, for: .touchUpInside)
         }
+
+        logoutButton.do {
+            $0.setTitle("로그아웃", for: .normal)
+            $0.setTitleColor(.blue, for: .normal)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.viewModel.action(input: .logout)
+            }, for: .touchUpInside)
+        }
+
+        withdrawButton.do {
+            $0.setTitle("탈퇴하기", for: .normal)
+            $0.setTitleColor(.blue, for: .normal)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.viewModel.action(input: .withdraw)
+            }, for: .touchUpInside)
+        }
+
+        reissueButton.do {
+            $0.setTitle("토큰 재발급", for: .normal)
+            $0.setTitleColor(.blue, for: .normal)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.viewModel.action(input: .reissue)
+            }, for: .touchUpInside)
+        }
     }
 
     override func configureLayout() {
@@ -62,6 +89,9 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
 
         view.addSubview(kakaoLoginButton)
         view.addSubview(appleLoginButton)
+        view.addSubview(logoutButton)
+        view.addSubview(withdrawButton)
+        view.addSubview(reissueButton)
 
         kakaoLoginButton.snp.makeConstraints { make in
             make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
@@ -76,6 +106,27 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
             make.bottom.equalTo(safeArea).inset(Layout.loginButtonBottomSpacing)
             make.height.equalTo(Layout.loginButtonHeight)
         }
+
+        logoutButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(kakaoLoginButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHeight)
+        }
+
+        withdrawButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(logoutButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHeight)
+        }
+
+        reissueButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(withdrawButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHeight)
+        }
     }
 
     override func bind() {
@@ -88,6 +139,40 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 } else {
                     // TODO: 로그인 실패 시, 에러 처리를 해야 합니다.
                     BitnagilLogger.log(logType: .error, message: "로그인 실패")
+                }
+            }
+            .store(in: &cancellables)
+
+        // TODO: 설정 페이지 작업 후 옮겨질 예정입니다.
+        viewModel.output.logoutResultPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { logoutResult in
+                if logoutResult {
+                    BitnagilLogger.log(logType: .debug, message: "로그아웃 성공")
+                } else {
+                    BitnagilLogger.log(logType: .debug, message: "로그아웃 실패")
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.output.withdrawResultPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { withdrawResult in
+                if withdrawResult {
+                    BitnagilLogger.log(logType: .debug, message: "탈퇴 성공")
+                } else {
+                    BitnagilLogger.log(logType: .debug, message: "탈퇴 실패")
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.output.reissueResultPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { reissueResult in
+                if reissueResult {
+                    BitnagilLogger.log(logType: .debug, message: "토큰 재발급 성공")
+                } else {
+                    BitnagilLogger.log(logType: .debug, message: "토큰 재발급 실패")
                 }
             }
             .store(in: &cancellables)
@@ -114,7 +199,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         guard
             let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
             let authCodeData = credential.authorizationCode,
-            let authToken = String(data: authCodeData, encoding: .utf8)
+            let identityTokenData = credential.identityToken,
+            let authToken = String(data: authCodeData, encoding: .utf8),
+            let identityToken = String(data: identityTokenData, encoding: .utf8)
         else {
             BitnagilLogger.log(logType: .error, message: "Apple AuthorizationCode 파싱 실패")
             return

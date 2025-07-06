@@ -9,6 +9,9 @@ import Foundation
 
 enum AuthEndpoint {
     case login(socialLoginType: SocialLoginType, nickname: String?, token: String)
+    case logout(accessToken: String)
+    case withdraw(accessToken: String)
+    case reissue(refreshToken: String)
 }
 
 extension AuthEndpoint: Endpoint {
@@ -19,13 +22,14 @@ extension AuthEndpoint: Endpoint {
     var path: String {
         switch self {
         case .login: baseURL + "/login"
+        case .logout: baseURL + "/logout"
+        case .withdraw: baseURL + "/withdrawal"
+        case .reissue: baseURL + "/token/reissue"
         }
     }
     
     var method: HTTPMethod {
-        switch self {
-        case .login: .post
-        }
+        return .post
     }
     
     var headers: [String : String] {
@@ -37,6 +41,12 @@ extension AuthEndpoint: Endpoint {
         switch self {
         case .login(_, _, let token):
             headers["SocialAccessToken"] = token
+        case .logout(let accessToken):
+            headers["Authorization"] = "Bearer \(accessToken)"
+        case .withdraw(let accessToken):
+            headers["Authorization"] = "Bearer \(accessToken)"
+        case .reissue(let refreshToken):
+            headers["Refresh-Token"] = refreshToken
         }
 
         return headers
@@ -54,6 +64,8 @@ extension AuthEndpoint: Endpoint {
                 parameters["nickname"] = nickname
             }
             return parameters
+        default:
+            return [:]
         }
     }
 }

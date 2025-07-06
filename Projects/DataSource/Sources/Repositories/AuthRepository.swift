@@ -34,14 +34,45 @@ public final class AuthRepository: AuthRepositoryProtocol {
     public func appleLogin(nickname: String?, authToken: String) async throws {
         var savedNickname: String = ""
         if let nickname {
-            try self.saveNickname(nickname: nickname)
+            try saveNickname(nickname: nickname)
             savedNickname = nickname
         } else {
-            savedNickname = try self.loadNickname()
+            savedNickname = try loadNickname()
         }
         try await requestServerLogin(socialType: .apple, nickname: savedNickname, token: authToken)
     }
 
+    public func logout() async throws {
+        let accessToken = try loadToken(tokenType: .accessToken)
+        let endpoint = AuthEndpoint.logout(accessToken: accessToken)
+        let response = try await networkService.request(endpoint: endpoint, type: BaseResponseDTO<String>.self)
+        try removeToken()
+        BitnagilLogger.log(logType: .debug, message: "\(response.message)")
+    }
+
+    public func withdraw() async throws {
+        let accessToken = try loadToken(tokenType: .accessToken)
+        let endpoint = AuthEndpoint.withdraw(accessToken: accessToken)
+        let response = try await networkService.request(endpoint: endpoint, type: BaseResponseDTO<String>.self)
+        try removeToken()
+        try removeNickname()
+        BitnagilLogger.log(logType: .debug, message: "\(response.message)")
+    }
+
+    public func reissueToken() async throws {
+        let refreshToken = try loadToken(tokenType: .refreshToken)
+        let endpoint = AuthEndpoint.reissue(refreshToken: refreshToken)
+        let tokenResponse = try await networkService.request(endpoint: endpoint, type: TokenResponseDTO.self)
+        guard
+            let tokenEntity = tokenResponse.data?.toTokenEntity(),
+            saveToken(tokenType: .accessToken, token: tokenEntity.accessToken),
+            saveToken(tokenType: .refreshToken, token: tokenEntity.refreshToken)
+        else { throw AuthError.tokenSaveFailed }
+
+        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(tokenEntity.accessToken)")
+        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(tokenEntity.refreshToken)")
+    }
+    
     private func fetchKakaoToken() async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             let resultHandler: (OAuthToken?, Error?) -> Void = { oauthToken, error in
@@ -75,18 +106,38 @@ public final class AuthRepository: AuthRepositoryProtocol {
             token: token)
 
         let tokenResponse = try await networkService.request(endpoint: endpoint, type: TokenResponseDTO.self)
-        let tokenEntity = tokenResponse.data.toTokenEntity()
-        guard saveToken(tokenType: .accessToken, token: tokenEntity.accessToken),
-              saveToken(tokenType: .refreshToken, token: tokenEntity.refreshToken)
-        else {
-            throw AuthError.tokenSaveFailed
-        }
+        guard
+            let tokenEntity = tokenResponse.data?.toTokenEntity(),
+            saveToken(tokenType: .accessToken, token: tokenEntity.accessToken),
+            saveToken(tokenType: .refreshToken, token: tokenEntity.refreshToken)
+        else { throw AuthError.tokenSaveFailed }
+
         BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(tokenEntity.accessToken)")
         BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(tokenEntity.refreshToken)")
     }
 
     private func saveToken(tokenType: TokenType, token: String) -> Bool {
         return keychainStorage.save(token, forKey: tokenType.rawValue)
+    }
+
+    private func loadToken(tokenType: TokenType) throws -> String {
+        guard let token = keychainStorage.load(forKey: tokenType.rawValue) else {
+            throw AuthError.tokenLoadFailed
+        }
+        return token
+    }
+
+    private func removeToken() throws {
+        guard
+            keychainStorage.remove(forKey: TokenType.accessToken.rawValue),
+            keychainStorage.remove(forKey: TokenType.refreshToken.rawValue)
+        else { throw AuthError.tokenRemoveFailed }
+    }
+
+    private func saveNickname(nickname: String) throws {
+        guard userDefaultsStorage.save(nickname, forKey: UserDefaultsKey.nickname.rawValue) else {
+            throw AuthError.nicknameSaveFailed
+        }
     }
 
     private func loadNickname() throws -> String {
@@ -97,9 +148,9 @@ public final class AuthRepository: AuthRepositoryProtocol {
         return nickname
     }
 
-    private func saveNickname(nickname: String) throws {
-        guard userDefaultsStorage.save(nickname, forKey: UserDefaultsKey.nickname.rawValue) else {
-            throw AuthError.nicknameSaveFailed
+    private func removeNickname() throws {
+        guard userDefaultsStorage.remove(forKey: UserDefaultsKey.nickname.rawValue) else {
+            throw AuthError.nicknameRemoveFailed
         }
     }
 }

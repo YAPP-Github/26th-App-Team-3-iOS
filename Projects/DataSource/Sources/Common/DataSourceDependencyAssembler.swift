@@ -27,10 +27,6 @@ public struct DataSourceDependencyAssembler: DependencyAssemblerProtocol {
             let userDefaultsStorage = DIContainer.shared.resolve(type: UserDefaultsStorageProtocol.self)
         else { return }
 
-        DIContainer.shared.register(type: TestRepositoryProtocol.self) { _ in
-            return TestRepository(networkService: networkService)
-        }
-
         DIContainer.shared.register(type: AuthRepositoryProtocol.self) { _ in
             return AuthRepository(
                 networkService: networkService,
