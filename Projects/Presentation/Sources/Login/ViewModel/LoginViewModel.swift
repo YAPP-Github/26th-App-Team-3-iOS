@@ -14,25 +14,38 @@ public final class LoginViewModel: ViewModel {
         case kakaoLogin
         case appleLogin(nickname: String?, authToken: String)
         case logout
+        case withdraw
     }
 
     public struct Output {
         let loginResultPublisher: AnyPublisher<Bool, Never>
         let logoutResultPublisher: AnyPublisher<Bool, Never>
+        let withdrawResultPublisher: AnyPublisher<Bool, Never>
     }
 
     private(set) var output: Output
     private let loginResultSubject = PassthroughSubject<Bool, Never>()
+    // TODO: 추후 설정 페이지로 옮겨야 합니다.
     private let logoutResultSubject = PassthroughSubject<Bool, Never>()
-    private let loginUseCase: LoginUseCaseProtocol
-    private let logoutUseCase: LogoutUseCaseProtocol
+    private let withdrawResultSubject = PassthroughSubject<Bool, Never>()
 
-    public init(loginUseCase: LoginUseCaseProtocol, logoutUseCase: LogoutUseCaseProtocol) {
+    private let loginUseCase: LoginUseCaseProtocol
+    // TODO: 추후 설정 페이지로 옮겨야 합니다.
+    private let logoutUseCase: LogoutUseCaseProtocol
+    private let withdrawUseCase: WithdrawUseCaseProtocol
+
+    public init(
+        loginUseCase: LoginUseCaseProtocol,
+        logoutUseCase: LogoutUseCaseProtocol,
+        withdrawUseCase: WithdrawUseCaseProtocol
+    ) {
         self.loginUseCase = loginUseCase
         self.logoutUseCase = logoutUseCase
+        self.withdrawUseCase = withdrawUseCase
         self.output = Output(
             loginResultPublisher: loginResultSubject.eraseToAnyPublisher(),
-            logoutResultPublisher: logoutResultSubject.eraseToAnyPublisher()
+            logoutResultPublisher: logoutResultSubject.eraseToAnyPublisher(),
+            withdrawResultPublisher: withdrawResultSubject.eraseToAnyPublisher()
         )
     }
 
@@ -68,6 +81,17 @@ public final class LoginViewModel: ViewModel {
                 } catch {
                     BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
                     logoutResultSubject.send(false)
+                }
+            }
+
+        case .withdraw:
+            Task {
+                do {
+                    try await withdrawUseCase.withdraw()
+                    withdrawResultSubject.send(true)
+                } catch {
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
+                    withdrawResultSubject.send(false)
                 }
             }
         }

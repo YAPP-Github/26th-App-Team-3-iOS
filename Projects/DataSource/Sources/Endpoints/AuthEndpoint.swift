@@ -10,6 +10,7 @@ import Foundation
 enum AuthEndpoint {
     case login(socialLoginType: SocialLoginType, nickname: String?, token: String)
     case logout(accessToken: String)
+    case withdraw(accessToken: String)
 }
 
 extension AuthEndpoint: Endpoint {
@@ -21,6 +22,7 @@ extension AuthEndpoint: Endpoint {
         switch self {
         case .login: baseURL + "/login"
         case .logout: baseURL + "/logout"
+        case .withdraw: baseURL + "/withdrawal"
         }
     }
     
@@ -38,6 +40,8 @@ extension AuthEndpoint: Endpoint {
         case .login(_, _, let token):
             headers["SocialAccessToken"] = token
         case .logout(let accessToken):
+            headers["Authorization"] = "Bearer \(accessToken)"
+        case .withdraw(let accessToken):
             headers["Authorization"] = "Bearer \(accessToken)"
         }
 

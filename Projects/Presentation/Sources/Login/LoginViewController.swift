@@ -24,6 +24,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
     private let kakaoLoginButton = UIButton()
     private let appleLoginButton = UIButton()
     private let logoutButton = UIButton()
+    private let withdrawButton = UIButton()
     private var cancellables: Set<AnyCancellable>
 
     public override init(viewModel: LoginViewModel) {
@@ -63,6 +64,14 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                 self?.viewModel.action(input: .logout)
             }, for: .touchUpInside)
         }
+
+        withdrawButton.do {
+            $0.setTitle("탈퇴하기", for: .normal)
+            $0.setTitleColor(.blue, for: .normal)
+            $0.addAction(UIAction { [weak self] _ in
+                self?.viewModel.action(input: .withdraw)
+            }, for: .touchUpInside)
+        }
     }
 
     override func configureLayout() {
@@ -72,6 +81,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
         view.addSubview(kakaoLoginButton)
         view.addSubview(appleLoginButton)
         view.addSubview(logoutButton)
+        view.addSubview(withdrawButton)
 
         kakaoLoginButton.snp.makeConstraints { make in
             make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
@@ -93,6 +103,13 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
             make.bottom.equalTo(kakaoLoginButton.snp.top).offset(-Layout.loginButtonSpacing)
             make.height.equalTo(Layout.loginButtonHeight)
         }
+
+        withdrawButton.snp.makeConstraints { make in
+            make.leading.equalTo(safeArea).offset(Layout.horizontalMargin)
+            make.trailing.equalTo(safeArea).inset(Layout.horizontalMargin)
+            make.bottom.equalTo(logoutButton.snp.top).offset(-Layout.loginButtonSpacing)
+            make.height.equalTo(Layout.loginButtonHeight)
+        }
     }
 
     override func bind() {
@@ -109,6 +126,7 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
             }
             .store(in: &cancellables)
 
+        // TODO: 설정 페이지 작업 후 옮겨질 예정입니다.
         viewModel.output.logoutResultPublisher
             .receive(on: DispatchQueue.main)
             .sink { logoutResult in
@@ -116,6 +134,17 @@ public final class LoginViewController: BaseViewController<LoginViewModel> {
                     BitnagilLogger.log(logType: .debug, message: "로그아웃 성공")
                 } else {
                     BitnagilLogger.log(logType: .debug, message: "로그아웃 실패")
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.output.withdrawResultPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { withdrawResult in
+                if withdrawResult {
+                    BitnagilLogger.log(logType: .debug, message: "탈퇴 성공")
+                } else {
+                    BitnagilLogger.log(logType: .debug, message: "탈퇴 실패")
                 }
             }
             .store(in: &cancellables)

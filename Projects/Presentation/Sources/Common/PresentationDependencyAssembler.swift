@@ -26,9 +26,13 @@ public struct PresentationDependencyAssembler: DependencyAssemblerProtocol {
         DIContainer.shared.register(type: LoginViewModel.self) { container in
             guard
                 let loginUseCase = container.resolve(type: LoginUseCaseProtocol.self),
-                let logoutUseCase = container.resolve(type: LogoutUseCaseProtocol.self)
+                let logoutUseCase = container.resolve(type: LogoutUseCaseProtocol.self),
+                let withdrawUseCase = container.resolve(type: WithdrawUseCaseProtocol.self)
             else { return }
-            return LoginViewModel(loginUseCase: loginUseCase, logoutUseCase: logoutUseCase)
+            return LoginViewModel(
+                loginUseCase: loginUseCase,
+                logoutUseCase: logoutUseCase,
+                withdrawUseCase: withdrawUseCase)
         }
     }
 }

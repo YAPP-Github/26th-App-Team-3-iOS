@@ -17,4 +17,7 @@ public protocol AuthRepositoryProtocol {
     
     /// 로그아웃을 진행합니다.
     func logout() async throws
+
+    /// 계정 탈퇴를 진행합니다.
+    func withdraw() async throws
 }

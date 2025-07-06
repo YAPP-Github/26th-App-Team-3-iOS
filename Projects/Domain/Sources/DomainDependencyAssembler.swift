@@ -29,5 +29,9 @@ public struct DomainDependencyAssembler: DependencyAssemblerProtocol {
         DIContainer.shared.register(type: LogoutUseCaseProtocol.self) { _ in
             return LogoutUseCase(authRepository: authRepository)
         }
+
+        DIContainer.shared.register(type: WithdrawUseCaseProtocol.self) { _ in
+            return WithdrawUseCase(authRepository: authRepository)
+        }
     }
 }
