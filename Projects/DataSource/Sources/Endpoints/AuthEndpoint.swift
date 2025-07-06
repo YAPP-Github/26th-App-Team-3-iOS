@@ -11,6 +11,7 @@ enum AuthEndpoint {
     case login(socialLoginType: SocialLoginType, nickname: String?, token: String)
     case logout(accessToken: String)
     case withdraw(accessToken: String)
+    case reissue(refreshToken: String)
 }
 
 extension AuthEndpoint: Endpoint {
@@ -23,6 +24,7 @@ extension AuthEndpoint: Endpoint {
         case .login: baseURL + "/login"
         case .logout: baseURL + "/logout"
         case .withdraw: baseURL + "/withdrawal"
+        case .reissue: baseURL + "/token/reissue"
         }
     }
     
@@ -43,6 +45,8 @@ extension AuthEndpoint: Endpoint {
             headers["Authorization"] = "Bearer \(accessToken)"
         case .withdraw(let accessToken):
             headers["Authorization"] = "Bearer \(accessToken)"
+        case .reissue(let refreshToken):
+            headers["Refresh-Token"] = refreshToken
         }
 
         return headers

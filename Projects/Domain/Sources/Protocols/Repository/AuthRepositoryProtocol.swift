@@ -20,4 +20,7 @@ public protocol AuthRepositoryProtocol {
 
     /// 계정 탈퇴를 진행합니다.
     func withdraw() async throws
+
+    /// 토큰 재발급을 진행합니다.
+    func reissueToken() async throws
 }

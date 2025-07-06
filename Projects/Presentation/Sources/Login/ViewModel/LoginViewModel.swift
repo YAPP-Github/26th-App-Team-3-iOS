@@ -15,12 +15,14 @@ public final class LoginViewModel: ViewModel {
         case appleLogin(nickname: String?, authToken: String)
         case logout
         case withdraw
+        case reissue
     }
 
     public struct Output {
         let loginResultPublisher: AnyPublisher<Bool, Never>
         let logoutResultPublisher: AnyPublisher<Bool, Never>
         let withdrawResultPublisher: AnyPublisher<Bool, Never>
+        let reissueResultPublisher: AnyPublisher<Bool, Never>
     }
 
     private(set) var output: Output
@@ -28,6 +30,7 @@ public final class LoginViewModel: ViewModel {
     // TODO: 추후 설정 페이지로 옮겨야 합니다.
     private let logoutResultSubject = PassthroughSubject<Bool, Never>()
     private let withdrawResultSubject = PassthroughSubject<Bool, Never>()
+    private let reissueResultSubject = PassthroughSubject<Bool, Never>()
 
     private let loginUseCase: LoginUseCaseProtocol
     // TODO: 추후 설정 페이지로 옮겨야 합니다.
@@ -45,7 +48,8 @@ public final class LoginViewModel: ViewModel {
         self.output = Output(
             loginResultPublisher: loginResultSubject.eraseToAnyPublisher(),
             logoutResultPublisher: logoutResultSubject.eraseToAnyPublisher(),
-            withdrawResultPublisher: withdrawResultSubject.eraseToAnyPublisher()
+            withdrawResultPublisher: withdrawResultSubject.eraseToAnyPublisher(),
+            reissueResultPublisher: reissueResultSubject.eraseToAnyPublisher()
         )
     }
 
@@ -92,6 +96,17 @@ public final class LoginViewModel: ViewModel {
                 } catch {
                     BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
                     withdrawResultSubject.send(false)
+                }
+            }
+
+        case .reissue:
+            Task {
+                do {
+                    try await logoutUseCase.reissueToken()
+                    reissueResultSubject.send(true)
+                } catch {
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
+                    reissueResultSubject.send(false)
                 }
             }
         }

@@ -59,6 +59,20 @@ public final class AuthRepository: AuthRepositoryProtocol {
         BitnagilLogger.log(logType: .debug, message: "\(response.message)")
     }
 
+    public func reissueToken() async throws {
+        let refreshToken = try loadToken(tokenType: .refreshToken)
+        let endpoint = AuthEndpoint.reissue(refreshToken: refreshToken)
+        let tokenResponse = try await networkService.request(endpoint: endpoint, type: TokenResponseDTO.self)
+        guard
+            let tokenEntity = tokenResponse.data?.toTokenEntity(),
+            saveToken(tokenType: .accessToken, token: tokenEntity.accessToken),
+            saveToken(tokenType: .refreshToken, token: tokenEntity.refreshToken)
+        else { throw AuthError.tokenSaveFailed }
+
+        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(tokenEntity.accessToken)")
+        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(tokenEntity.refreshToken)")
+    }
+    
     private func fetchKakaoToken() async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             let resultHandler: (OAuthToken?, Error?) -> Void = { oauthToken, error in
