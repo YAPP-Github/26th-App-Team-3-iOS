@@ -35,7 +35,7 @@ public final class HomeViewController: BaseViewController<HomeViewModel> {
 
         label.do {
             $0.textColor = BitnagilColor.gray90
-            $0.attributedText = BitnagilFont.headline1.attributedString(text: nil)
+            $0.attributedText = BitnagilFont(style: .headline1, weight: .medium).attributedString(text: nil)
         }
     }
 
