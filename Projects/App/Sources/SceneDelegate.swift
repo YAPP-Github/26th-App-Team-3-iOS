@@ -18,11 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         DIContainer.shared.dependencyInjection()
-        guard let loginViewModel = DIContainer.shared.resolve(type: LoginViewModel.self) else {
-            fatalError("loginViewModel 의존성이 등록되지 않았습니다.")
-        }
 
-        let navigationController = UINavigationController(rootViewController: LoginViewController(viewModel: loginViewModel))
+        let navigationController = UINavigationController(rootViewController: IntroView())
         navigationController.isNavigationBarHidden = true
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
