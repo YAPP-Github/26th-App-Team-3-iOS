@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Domain
 
 enum AuthEndpoint {
     case login(socialLoginType: SocialLoginType, nickname: String?, token: String)
     case logout(accessToken: String)
     case withdraw(accessToken: String)
     case reissue(refreshToken: String)
+    case agreements(accessToken: String, agreements: [TermsType: Bool])
 }
 
 extension AuthEndpoint: Endpoint {
@@ -25,6 +27,7 @@ extension AuthEndpoint: Endpoint {
         case .logout: baseURL + "/logout"
         case .withdraw: baseURL + "/withdrawal"
         case .reissue: baseURL + "/token/reissue"
+        case .agreements: baseURL + "/agreements"
         }
     }
     
@@ -47,6 +50,8 @@ extension AuthEndpoint: Endpoint {
             headers["Authorization"] = "Bearer \(accessToken)"
         case .reissue(let refreshToken):
             headers["Refresh-Token"] = refreshToken
+        case .agreements(let accessToken, _):
+            headers["Authorization"] = "Bearer \(accessToken)"
         }
 
         return headers
@@ -64,8 +69,24 @@ extension AuthEndpoint: Endpoint {
                 parameters["nickname"] = nickname
             }
             return parameters
+        case .agreements(_, let agreements):
+            var parameters: [String: Any] = [:]
+            for agreement in agreements {
+                parameters[agreement.key.termKey] = agreement.value
+            }
+            return parameters
         default:
             return [:]
+        }
+    }
+}
+
+extension TermsType {
+    var termKey: String {
+        switch self {
+        case .service: "agreedToTermsOfService"
+        case .privacy: "agreedToPrivacyPolicy"
+        case .age: "isOverFourteen"
         }
     }
 }

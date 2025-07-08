@@ -75,8 +75,15 @@ public final class LoginViewModel: ViewModel {
             agreementStateSubject.send(agreementState)
 
         case .submitAgreement:
-            // TODO: 전체 동의 API
-            print("서버통신")
+            Task {
+                do {
+                    let agreements = agreementStateSubject.value.agreements
+                    try await loginUseCase.sumbitAgreement(agreements: agreements)
+                    agreementResultSubject.send(true)
+                } catch {
+                    agreementResultSubject.send(false)
+                }
+            }
         }
     }
 }

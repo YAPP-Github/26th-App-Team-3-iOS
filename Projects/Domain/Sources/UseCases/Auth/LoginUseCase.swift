@@ -21,4 +21,8 @@ public final class LoginUseCase: LoginUseCaseProtocol {
     public func appleLogin(nickname: String?, authToken: String) async throws {
         try await authRepository.appleLogin(nickname: nickname, authToken: authToken)
     }
+
+    public func sumbitAgreement(agreements: [TermsType: Bool]) async throws {
+        try await authRepository.submitAgreement(agreements: agreements)
+    }
 }

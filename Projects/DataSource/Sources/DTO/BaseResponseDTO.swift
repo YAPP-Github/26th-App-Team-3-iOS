@@ -10,3 +10,5 @@ struct BaseResponseDTO<T: Decodable>: Decodable {
     let data: T?
     let message: String
 }
+
+struct EmptyResponse: Decodable {}

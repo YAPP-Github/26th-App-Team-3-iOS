@@ -6,12 +6,9 @@
 //
 
 import Foundation
+import Domain
 
-public enum TermsType: CaseIterable {
-    case service
-    case privacy
-    case age
-
+extension TermsType {
     var title: String {
         switch self {
         case .service: "(필수) 서비스 이용약관 동의"

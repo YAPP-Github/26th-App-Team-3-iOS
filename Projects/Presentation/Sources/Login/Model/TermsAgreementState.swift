@@ -5,8 +5,10 @@
 //  Created by 최정인 on 7/8/25.
 //
 
+import Domain
+
 struct TermsAgreementState {
-    private var agreements: [TermsType: Bool] = [
+    private(set) var agreements: [TermsType: Bool] = [
         .service: false,
         .privacy: false,
         .age: false

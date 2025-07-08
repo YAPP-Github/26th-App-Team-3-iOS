@@ -7,6 +7,7 @@
 
 import Foundation
 import DataSource
+import Shared
 
 public final class NetworkService: NetworkServiceProtocol {
     private let networkProvider: NetworkProviderProtocol
@@ -25,6 +26,7 @@ public final class NetworkService: NetworkServiceProtocol {
         }
 
         guard 200..<300 ~= httpResponse.statusCode else {
+            BitnagilLogger.log(logType: .error, message: "응답 코드: \(httpResponse.statusCode)")
             throw NetworkError.invalidStatusCode(statusCode: httpResponse.statusCode)
         }
 
