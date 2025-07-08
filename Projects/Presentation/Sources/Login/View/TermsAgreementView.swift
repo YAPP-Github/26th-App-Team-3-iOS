@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Domain
 import Shared
 import SnapKit
 import Then
@@ -46,15 +47,10 @@ public final class TermsAgreementView: BaseViewController<LoginViewModel> {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        configureNavigationBar(navigationStyle: .withBackButton(title: "약관 동의"))
     }
 
     override func configureAttribute() {
-        title = "약관 동의"
-        let backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
-        self.navigationItem.backBarButtonItem = backBarButtonItem
-
         agreementLabel.do {
             let text = "빛나길 이용을 위해\n필수 약관에 동의해 주세요."
             $0.attributedText = BitnagilFont(style: .title2, weight: .bold).attributedString(text: text)

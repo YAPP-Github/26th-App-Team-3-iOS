@@ -81,6 +81,7 @@ public final class LoginViewModel: ViewModel {
                     try await loginUseCase.sumbitAgreement(agreements: agreements)
                     agreementResultSubject.send(true)
                 } catch {
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
                     agreementResultSubject.send(false)
                 }
             }

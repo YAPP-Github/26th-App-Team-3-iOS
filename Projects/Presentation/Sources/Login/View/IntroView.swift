@@ -31,6 +31,11 @@ public final class IntroView: UIViewController {
         configureLayout()
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar(navigationStyle: .hidden)
+    }
+
     private func configureAttribute() {
         introLabel.do {
             let text = "당신의 하루 리듬을 이해하고,\n작은 변화를 함께 시작해볼게요."

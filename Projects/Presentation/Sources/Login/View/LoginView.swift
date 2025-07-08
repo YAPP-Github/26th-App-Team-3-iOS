@@ -41,6 +41,11 @@ public final class LoginView: BaseViewController<LoginViewModel> {
         super.viewDidLoad()
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar(navigationStyle: .hidden)
+    }
+
     override func configureAttribute() {
         logoView.do {
             $0.backgroundColor = BitnagilColor.gray90
