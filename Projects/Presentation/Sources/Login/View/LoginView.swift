@@ -47,7 +47,7 @@ public final class LoginView: BaseViewController<LoginViewModel> {
         }
 
         kakaoLoginButton.addAction(UIAction { [weak self] _ in
-            self?.viewModel.action(input: .fetchKakaoToken)
+            self?.viewModel.action(input: .kakaoLogin)
         }, for: .touchUpInside)
 
         appleLoginButton.addAction(UIAction { [weak self] _ in
@@ -86,16 +86,17 @@ public final class LoginView: BaseViewController<LoginViewModel> {
     }
 
     override func bind() {
-        viewModel.output.fetchTokenPublisher
+        viewModel.output.loginResultPublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] fetchTokenResult in
+            .sink { [weak self] loginResult in
                 guard let self else { return }
-                if fetchTokenResult {
-                    BitnagilLogger.log(logType: .debug, message: "토큰 값 가져오기 성공")
+                if loginResult {
+                    BitnagilLogger.log(logType: .debug, message: "서버 로그인 성공")
                     let agreementView = TermsAgreementView(viewModel: self.viewModel)
                     self.navigationController?.pushViewController(agreementView, animated: true)
                 } else {
-                    BitnagilLogger.log(logType: .error, message: "토큰 값 가져오기 실패")
+                    // TODO: 로그인 실패 시, 에러 처리
+                    BitnagilLogger.log(logType: .error, message: "서버 로그인 실패")
                 }
             }
             .store(in: &cancellables)
@@ -135,7 +136,7 @@ extension LoginView: ASAuthorizationControllerDelegate {
         if let givenName, let familyName {
             nickname = "\(familyName)\(givenName)"
         }
-        self.viewModel.action(input: .fetchAppleToken(nickname: nickname, authToken: authToken))
+        self.viewModel.action(input: .appleLogin(nickname: nickname, authToken: authToken))
     }
 
     public func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: any Error) {
