@@ -7,8 +7,7 @@
 
 public protocol AuthRepositoryProtocol {
     /// 카카오 소셜 로그인을 진행합니다.
-    /// - Returns: 카카오 SDK를 통해 받은 토큰 값을 반환합니다.
-    func kakaoLogin() async throws -> String
+    func kakaoLogin() async throws
 
     /// Apple 소셜 로그인을 진행합니다.
     /// - Parameters:

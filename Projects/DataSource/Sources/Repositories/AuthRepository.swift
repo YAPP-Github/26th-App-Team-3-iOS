@@ -26,11 +26,6 @@ public final class AuthRepository: AuthRepositoryProtocol {
         self.userDefaultsStorage = userDefaultsStorage
     }
 
-    public func kakaoLogin() async throws -> String {
-        let accessToken = try await fetchKakaoToken()
-        return accessToken
-    }
-
     public func kakaoLogin() async throws {
         let accessToken = try await fetchKakaoToken()
         try await requestServerLogin(socialType: .kakao, nickname: nil, token: accessToken)
