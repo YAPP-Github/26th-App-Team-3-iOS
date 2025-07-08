@@ -41,6 +41,7 @@ public final class IntroView: UIViewController {
             let text = "당신의 하루 리듬을 이해하고,\n작은 변화를 함께 시작해볼게요."
             $0.attributedText = BitnagilFont(style: .title2, weight: .bold).attributedString(text: text)
             $0.textAlignment = .center
+            $0.textColor = BitnagilColor.navy500
             $0.numberOfLines = 2
         }
 

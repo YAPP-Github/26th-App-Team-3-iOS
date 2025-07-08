@@ -20,14 +20,13 @@ final class TotalAgreementButton: UIButton {
     private let checkButton = UIImageView()
     private let buttonLabel = UILabel()
 
-    private var enableState: Bool {
+    private var enableState: Bool = false {
         didSet {
             updateButtonAttribute()
         }
     }
 
-    init(enableState: Bool = false) {
-        self.enableState = enableState
+    init() {
         super.init(frame: .zero)
         configureAttribute()
         configureLayout()

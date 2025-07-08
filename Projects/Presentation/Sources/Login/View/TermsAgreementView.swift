@@ -56,6 +56,7 @@ public final class TermsAgreementView: BaseViewController<LoginViewModel> {
             $0.attributedText = BitnagilFont(style: .title2, weight: .bold).attributedString(text: text)
             $0.textAlignment = .left
             $0.numberOfLines = 2
+            $0.textColor = BitnagilColor.navy500
         }
 
         totalAgreementButton.addAction(UIAction { [weak self] _ in
