@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         DIContainer.shared.dependencyInjection()
 
-        let navigationController = UINavigationController(rootViewController: IntroView())
+        let introView = IntroView()
+        let navigationController = UINavigationController(rootViewController: introView)
         navigationController.isNavigationBarHidden = true
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
