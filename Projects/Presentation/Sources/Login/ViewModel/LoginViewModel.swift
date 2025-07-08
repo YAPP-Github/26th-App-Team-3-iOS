@@ -11,45 +11,72 @@ import Shared
 
 public final class LoginViewModel: ViewModel {
     public enum Input {
-        case fetchKakaoToken
-        case fetchAppleToken(nickname: String?, authToken: String)
+        case kakaoLogin
+        case appleLogin(nickname: String?, authToken: String)
+        case toggleAgreement(termsType: TermsType)
+        case toggleTotalAgreement
+        case submitAgreement
     }
 
     public struct Output {
-        let fetchTokenPublisher: AnyPublisher<Bool, Never>
         let loginResultPublisher: AnyPublisher<Bool, Never>
+        let agreementStatePublisher: AnyPublisher<TermsAgreementState, Never>
+        let agreementResultPublisher: AnyPublisher<Bool, Never>
     }
 
     private(set) var output: Output
-    private let fetchTokenSubject = PassthroughSubject<Bool, Never>()
     private let loginResultSubject = PassthroughSubject<Bool, Never>()
+    private let agreementStateSubject = CurrentValueSubject<TermsAgreementState, Never>(TermsAgreementState())
+    private let agreementResultSubject = PassthroughSubject<Bool, Never>()
 
     private let loginUseCase: LoginUseCaseProtocol
     private var userInformation: (nickname: String?, token: String)?
     public init(loginUseCase: LoginUseCaseProtocol) {
         self.loginUseCase = loginUseCase
         self.output = Output(
-            fetchTokenPublisher: fetchTokenSubject.eraseToAnyPublisher(),
-            loginResultPublisher: loginResultSubject.eraseToAnyPublisher()
+            loginResultPublisher: loginResultSubject.eraseToAnyPublisher(),
+            agreementStatePublisher: agreementStateSubject.eraseToAnyPublisher(),
+            agreementResultPublisher: agreementResultSubject.eraseToAnyPublisher()
         )
     }
 
     public func action(input: Input) {
         switch input {
-        case .fetchKakaoToken:
+        case .kakaoLogin:
             Task {
                 do {
-                    let token = try await loginUseCase.kakaoLogin()
-                    userInformation = (nil, token)
-                    fetchTokenSubject.send(true)
+                    try await loginUseCase.kakaoLogin()
+                    loginResultSubject.send(true)
                 } catch {
-                    fetchTokenSubject.send(false)
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
+                    loginResultSubject.send(false)
                 }
             }
 
-        case .fetchAppleToken(let nickname, let authToken):
-            self.userInformation = (nickname, authToken)
-            fetchTokenSubject.send(true)
+        case .appleLogin(let nickname, let authToken):
+            Task {
+                do {
+                    try await loginUseCase.appleLogin(nickname: nickname, authToken: authToken)
+                    loginResultSubject.send(true)
+                } catch {
+                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
+                    loginResultSubject.send(false)
+                }
+            }
+
+        case .toggleAgreement(let termsType):
+            var agreementState = agreementStateSubject.value
+            agreementState.toggleState(termType: termsType)
+            agreementStateSubject.send(agreementState)
+
+        case .toggleTotalAgreement:
+            var agreementState = agreementStateSubject.value
+            agreementState.togleAllStates()
+            agreementStateSubject.send(agreementState)
+
+        case .submitAgreement:
+            // TODO: 전체 동의 API
+            print("서버통신")
         }
     }
 }
