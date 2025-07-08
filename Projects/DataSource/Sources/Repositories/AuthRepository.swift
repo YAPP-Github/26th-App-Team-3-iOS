@@ -42,6 +42,13 @@ public final class AuthRepository: AuthRepositoryProtocol {
         try await requestServerLogin(socialType: .apple, nickname: savedNickname, token: authToken)
     }
 
+    public func submitAgreement(agreements: [TermsType : Bool]) async throws {
+        let accessToken = try loadToken(tokenType: .accessToken)
+        let endpoint = AuthEndpoint.agreements(accessToken: accessToken, agreements: agreements)
+        let response = try await networkService.request(endpoint: endpoint, type: BaseResponseDTO<EmptyResponse>.self)
+        BitnagilLogger.log(logType: .debug, message: "\(response)")
+    }
+
     public func logout() async throws {
         let accessToken = try loadToken(tokenType: .accessToken)
         let endpoint = AuthEndpoint.logout(accessToken: accessToken)
@@ -62,15 +69,16 @@ public final class AuthRepository: AuthRepositoryProtocol {
     public func reissueToken() async throws {
         let refreshToken = try loadToken(tokenType: .refreshToken)
         let endpoint = AuthEndpoint.reissue(refreshToken: refreshToken)
-        let tokenResponse = try await networkService.request(endpoint: endpoint, type: TokenResponseDTO.self)
+        let userResponse = try await networkService.request(endpoint: endpoint, type: LoginResponseDTO.self)
         guard
-            let tokenEntity = tokenResponse.data?.toTokenEntity(),
-            saveToken(tokenType: .accessToken, token: tokenEntity.accessToken),
-            saveToken(tokenType: .refreshToken, token: tokenEntity.refreshToken)
+            let userEntity = userResponse.data?.toUserEntity(),
+            saveToken(tokenType: .accessToken, token: userEntity.accessToken),
+            saveToken(tokenType: .refreshToken, token: userEntity.refreshToken)
         else { throw AuthError.tokenSaveFailed }
 
-        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(tokenEntity.accessToken)")
-        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(tokenEntity.refreshToken)")
+        BitnagilLogger.log(logType: .debug, message: "User Logined: \(userEntity.userState)")
+        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(userEntity.accessToken)")
+        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(userEntity.refreshToken)")
     }
     
     private func fetchKakaoToken() async throws -> String {
@@ -105,15 +113,16 @@ public final class AuthRepository: AuthRepositoryProtocol {
             nickname: nickname,
             token: token)
 
-        let tokenResponse = try await networkService.request(endpoint: endpoint, type: TokenResponseDTO.self)
+        let userResponse = try await networkService.request(endpoint: endpoint, type: LoginResponseDTO.self)
         guard
-            let tokenEntity = tokenResponse.data?.toTokenEntity(),
-            saveToken(tokenType: .accessToken, token: tokenEntity.accessToken),
-            saveToken(tokenType: .refreshToken, token: tokenEntity.refreshToken)
+            let userEntity = userResponse.data?.toUserEntity(),
+            saveToken(tokenType: .accessToken, token: userEntity.accessToken),
+            saveToken(tokenType: .refreshToken, token: userEntity.refreshToken)
         else { throw AuthError.tokenSaveFailed }
 
-        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(tokenEntity.accessToken)")
-        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(tokenEntity.refreshToken)")
+        BitnagilLogger.log(logType: .debug, message: "User Logined: \(userEntity.userState)")
+        BitnagilLogger.log(logType: .debug, message: "AccessToken Saved: \(userEntity.accessToken)")
+        BitnagilLogger.log(logType: .debug, message: "RefreshToken Saved: \(userEntity.refreshToken)")
     }
 
     private func saveToken(tokenType: TokenType, token: String) -> Bool {

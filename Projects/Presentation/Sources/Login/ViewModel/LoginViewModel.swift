@@ -13,43 +13,30 @@ public final class LoginViewModel: ViewModel {
     public enum Input {
         case kakaoLogin
         case appleLogin(nickname: String?, authToken: String)
-        case logout
-        case withdraw
-        case reissue
+        case toggleAgreement(termsType: TermsType)
+        case toggleTotalAgreement
+        case submitAgreement
     }
 
     public struct Output {
         let loginResultPublisher: AnyPublisher<Bool, Never>
-        let logoutResultPublisher: AnyPublisher<Bool, Never>
-        let withdrawResultPublisher: AnyPublisher<Bool, Never>
-        let reissueResultPublisher: AnyPublisher<Bool, Never>
+        let agreementStatePublisher: AnyPublisher<TermsAgreementState, Never>
+        let agreementResultPublisher: AnyPublisher<Bool, Never>
     }
 
     private(set) var output: Output
     private let loginResultSubject = PassthroughSubject<Bool, Never>()
-    // TODO: 추후 설정 페이지로 옮겨야 합니다.
-    private let logoutResultSubject = PassthroughSubject<Bool, Never>()
-    private let withdrawResultSubject = PassthroughSubject<Bool, Never>()
-    private let reissueResultSubject = PassthroughSubject<Bool, Never>()
+    private let agreementStateSubject = CurrentValueSubject<TermsAgreementState, Never>(TermsAgreementState())
+    private let agreementResultSubject = PassthroughSubject<Bool, Never>()
 
     private let loginUseCase: LoginUseCaseProtocol
-    // TODO: 추후 설정 페이지로 옮겨야 합니다.
-    private let logoutUseCase: LogoutUseCaseProtocol
-    private let withdrawUseCase: WithdrawUseCaseProtocol
-
-    public init(
-        loginUseCase: LoginUseCaseProtocol,
-        logoutUseCase: LogoutUseCaseProtocol,
-        withdrawUseCase: WithdrawUseCaseProtocol
-    ) {
+    private var userInformation: (nickname: String?, token: String)?
+    public init(loginUseCase: LoginUseCaseProtocol) {
         self.loginUseCase = loginUseCase
-        self.logoutUseCase = logoutUseCase
-        self.withdrawUseCase = withdrawUseCase
         self.output = Output(
             loginResultPublisher: loginResultSubject.eraseToAnyPublisher(),
-            logoutResultPublisher: logoutResultSubject.eraseToAnyPublisher(),
-            withdrawResultPublisher: withdrawResultSubject.eraseToAnyPublisher(),
-            reissueResultPublisher: reissueResultSubject.eraseToAnyPublisher()
+            agreementStatePublisher: agreementStateSubject.eraseToAnyPublisher(),
+            agreementResultPublisher: agreementResultSubject.eraseToAnyPublisher()
         )
     }
 
@@ -77,36 +64,25 @@ public final class LoginViewModel: ViewModel {
                 }
             }
 
-        case .logout:
-            Task {
-                do {
-                    try await logoutUseCase.logout()
-                    logoutResultSubject.send(true)
-                } catch {
-                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
-                    logoutResultSubject.send(false)
-                }
-            }
+        case .toggleAgreement(let termsType):
+            var agreementState = agreementStateSubject.value
+            agreementState.toggleState(termType: termsType)
+            agreementStateSubject.send(agreementState)
 
-        case .withdraw:
-            Task {
-                do {
-                    try await withdrawUseCase.withdraw()
-                    withdrawResultSubject.send(true)
-                } catch {
-                    BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
-                    withdrawResultSubject.send(false)
-                }
-            }
+        case .toggleTotalAgreement:
+            var agreementState = agreementStateSubject.value
+            agreementState.togleAllStates()
+            agreementStateSubject.send(agreementState)
 
-        case .reissue:
+        case .submitAgreement:
             Task {
                 do {
-                    try await logoutUseCase.reissueToken()
-                    reissueResultSubject.send(true)
+                    let agreements = agreementStateSubject.value.agreements
+                    try await loginUseCase.sumbitAgreement(agreements: agreements)
+                    agreementResultSubject.send(true)
                 } catch {
                     BitnagilLogger.log(logType: .error, message: "\(error.localizedDescription)")
-                    reissueResultSubject.send(false)
+                    agreementResultSubject.send(false)
                 }
             }
         }
