@@ -52,7 +52,7 @@ final class SocialLoginButton: UIButton {
     private let socialType: SocialType
     private let stackView = UIStackView()
     private let iconImageView = UIImageView()
-    private let buttonLable = UILabel()
+    private let buttonLabel = UILabel()
 
     init(socialType: SocialType) {
         self.socialType = socialType
@@ -81,7 +81,7 @@ final class SocialLoginButton: UIButton {
             $0.contentMode = .scaleAspectFit
         }
 
-        buttonLable.do {
+        buttonLabel.do {
             $0.text = socialType.buttonTitle
             $0.textColor = socialType.buttonTextColor
             $0.font = BitnagilFont(style: .button2, weight: .semiBold).font
@@ -91,7 +91,7 @@ final class SocialLoginButton: UIButton {
     private func configureLayout() {
         addSubview(stackView)
         stackView.addArrangedSubview(iconImageView)
-        stackView.addArrangedSubview(buttonLable)
+        stackView.addArrangedSubview(buttonLabel)
 
         stackView.snp.makeConstraints { make in
             make.center.equalToSuperview()
