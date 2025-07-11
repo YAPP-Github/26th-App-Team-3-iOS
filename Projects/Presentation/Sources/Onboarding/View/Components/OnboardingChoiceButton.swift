@@ -12,6 +12,7 @@ final class OnboardingChoiceButton: UIButton {
     private enum Layout {
         static let cornerRadius: CGFloat = 12
         static let horizontalMargin: CGFloat = 20
+        static let stackViewSpacing: CGFloat = 2
         static let mainLabelHeight: CGFloat = 28
         static let subLabelHeight: CGFloat = 20
     }
@@ -26,8 +27,8 @@ final class OnboardingChoiceButton: UIButton {
         }
     }
 
-    private var onboardingChoice: OnboardingChoice
-    init(onboardingChoice: OnboardingChoice) {
+    private var onboardingChoice: OnboardingChoiceProtocol
+    init(onboardingChoice: OnboardingChoiceProtocol) {
         self.onboardingChoice = onboardingChoice
         super.init(frame: .zero)
         configureAttribute()
@@ -47,7 +48,7 @@ final class OnboardingChoiceButton: UIButton {
         stackView.do {
             $0.axis = .vertical
             $0.alignment = .leading
-            $0.spacing = 2
+            $0.spacing = Layout.stackViewSpacing
             $0.isUserInteractionEnabled = false
         }
 
@@ -99,7 +100,7 @@ final class OnboardingChoiceButton: UIButton {
         subLabel?.textColor = isChecked ? BitnagilColor.navy500 : BitnagilColor.gray50
     }
 
-    func updateButtonState() {
-        self.isChecked.toggle()
+    func updateButtonState(isChecked: Bool) {
+        self.isChecked = isChecked
     }
 }
