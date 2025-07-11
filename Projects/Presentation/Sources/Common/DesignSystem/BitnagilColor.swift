@@ -13,6 +13,7 @@ enum BitnagilColor {
     }
 
     static let kakao = UIColor(named: "Kakao", in: bundle, compatibleWith: nil)
+    static let orange = UIColor(red: 255/255, green: 111/255, blue: 15/255, alpha: 1)
 
     // MARK: - Emotion Colors
     static let happy = UIColor(named: "EmotionHappy", in: bundle, compatibleWith: nil)
