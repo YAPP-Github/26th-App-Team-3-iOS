@@ -23,6 +23,10 @@ public struct PresentationDependencyAssembler: DependencyAssemblerProtocol {
             return HomeViewModel()
         }
 
+        DIContainer.shared.register(type: OnboardingViewModel.self) { _ in
+            return OnboardingViewModel()
+        }
+
         DIContainer.shared.register(type: LoginViewModel.self) { container in
             guard let loginUseCase = container.resolve(type: LoginUseCaseProtocol.self)
             else { return }

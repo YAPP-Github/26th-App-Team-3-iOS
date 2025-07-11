@@ -127,10 +127,15 @@ public final class TermsAgreementView: BaseViewController<LoginViewModel> {
 
         viewModel.output.agreementResultPublisher
             .receive(on: DispatchQueue.main)
-            .sink { agreementResult in
+            .sink { [weak self] agreementResult in
+                guard let self else { return }
                 if agreementResult {
-                    // TODO: 약관 동의 성공 시 온보딩 화면으로 이동해야 합니다.
                     BitnagilLogger.log(logType: .debug, message: "약관 동의 성공")
+                    guard let onboardingViewModel = DIContainer.shared.resolve(type: OnboardingViewModel.self) else {
+                        fatalError("onboardingViewModel 의존성이 등록되지 않았습니다.")
+                    }
+                    let onboardingView = OnboardingView(viewModel: onboardingViewModel, onboarding: .time)
+                    self.navigationController?.pushViewController(onboardingView, animated: true)
                 } else {
                     // TODO: 약관 동의 실패 시, 에러 처리를 해야 합니다.
                     BitnagilLogger.log(logType: .error, message: "약관 동의 실패")
